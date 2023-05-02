@@ -14,6 +14,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import TinderCards from './components/TinderCards'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -56,6 +57,7 @@ function App() {
                 path="/signup" 
                 element={<Signup />} 
               />
+              
               <Route 
                 path="/me" 
                 element={<Profile />} 
@@ -64,6 +66,9 @@ function App() {
                 path="/profiles/:profileId" 
                 element={<Profile />} 
               />
+              <Route
+              path='/seeMatch'
+              element ={<TinderCards/>}/>
             </Routes>
           </div>
           <Footer />

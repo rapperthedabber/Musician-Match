@@ -5,13 +5,14 @@ import ProfileList from '../components/ProfileList';
 
 import { QUERY_PROFILES } from '../utils/queries';
 
+
 const Home = () => {
   const { loading, data } = useQuery(QUERY_PROFILES);
   const profiles = data?.profiles || [];
 
   return (
     <main>
-      <div className="bg-red-900 w-screen h-screen flex-row justify-center">
+      <div className="bg-white-900 w-screen h-screen flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
           {loading ? (
             <div>Loading...</div>
