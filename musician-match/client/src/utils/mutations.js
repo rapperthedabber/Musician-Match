@@ -12,12 +12,12 @@ export const ADD_PROFILE = gql`
   }
 `;
 
-export const ADD_SKILL = gql`
-  mutation addSkill($profileId: ID!, $skill: String!) {
-    addSkill(profileId: $profileId, skill: $skill) {
+export const ADD_INSTRUMENT = gql`
+  mutation addInstrument($profileId: ID!, $instrument: String!) {
+    addinstrument(profileId: $profileId, instrument: $instrument) {
       _id
       name
-      skills
+      instruments
     }
   }
 `;
@@ -34,12 +34,12 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const REMOVE_SKILL = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
+export const REMOVE_INSTRUMENT = gql`
+  mutation removeInstrument($instrument: String!) {
+    removeInstrument(instrument: $instrument) {
       _id
       name
-      skills
+      instruments
     }
   }
 `;
