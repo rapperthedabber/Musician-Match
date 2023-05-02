@@ -9,7 +9,7 @@ const ProfileList = ({ profiles, title }) => {
   return (
     <div>
       <h3 className="text-primary">{title}</h3>
-      <div className="flex-row justify-space-between my-4">
+      <div className={" flex-row justify-space-between my-4"}>
         {profiles &&
           profiles.map((profile) => (
             <div key={profile._id} className="col-12 col-xl-6">
