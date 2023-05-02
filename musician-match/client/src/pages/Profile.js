@@ -48,9 +48,9 @@ const Profile = () => {
         Instruments...
       </h2>
 
-      {profile.instrument?.length > 0 && (
+      {profile.instruments?.length > 0 && (
         <InstrumentList
-          Instrument={profile.instrument}
+          instruments={profile.instruments}
           isLoggedInUser={!profileId && true}
         />
       )}

@@ -19,7 +19,11 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  skills: [
+  age: {
+    type: String,
+    required: true,
+  },
+  instruments: [
     {
       type: String,
       trim: true,

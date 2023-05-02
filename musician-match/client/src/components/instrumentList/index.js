@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { REMOVE_INSTRUMENT } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
-const InstrumentList = ({ instruments, isLoggedInUser = false }) => {
+const InstrumentList = ({ instruments, isLoggedInUser }) => { //isLoggedInUser WAS set to false
   const [removeInstrument, { error }] = useMutation(REMOVE_INSTRUMENT, {
     update(cache, { data: { removeInstrument } }) {
       try {
