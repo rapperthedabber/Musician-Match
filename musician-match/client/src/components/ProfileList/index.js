@@ -17,9 +17,9 @@ const ProfileList = ({ profiles, title }) => {
                 <h4 className="card-header bg-dark text-light p-2 m-0">
                   {profile.name} <br />
                   <span className="text-white" style={{ fontSize: '1rem' }}>
-                    currently has {profile.skills ? profile.skills.length : 0}{' '}
-                    endorsed skill
-                    {profile.skills && profile.skills.length === 1 ? '' : 's'}
+                    currently has {profile.instruments ? profile.instruments.length : 0}{' '}
+                    endorsed instrument
+                    {profile.instruments && profile.instruments.length === 1 ? '' : 's'}
                   </span>
                 </h4>
 
@@ -27,7 +27,7 @@ const ProfileList = ({ profiles, title }) => {
                   className="btn btn-block btn-squared btn-light text-dark"
                   to={`/profiles/${profile._id}`}
                 >
-                  View and endorse their skills.
+                  View and endorse their instruments.
                 </Link>
               </div>
             </div>
