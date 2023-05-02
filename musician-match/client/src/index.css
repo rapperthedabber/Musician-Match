@@ -1781,3 +1781,27 @@ label form [type='radio'] {
     align-content: center;
   }
 }
+
+.card{
+  position: relative;
+  width: 600px;
+  padding: 20px;
+  max-width: 85vw;
+  height: 500px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+
+}
+#name{
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.tinderContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+}
+.swipe{
+  position:absolute
+}
