@@ -4,17 +4,12 @@ const typeDefs = gql`
   type Profile {
     _id: ID
     name: String
-    age: Number
+    age: Int
     email: String
     password: String
-    instruments: [Instrument]
+    instruments: [String]
   }
 
-  type Instrument {
-    instrumentName: String
-    yearsPlayed: Number
-    skillLevel: String
-  }
 
   type Auth {
     token: ID!
@@ -33,9 +28,10 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
 
     addSkill(profileId: ID!, skill: String!): Profile
+    addInstrument(profileId: ID!, instrument: String!): Profile
     removeProfile: Profile
     removeSkill(skill: String!): Profile
   }
-`;
-
+  `;
+  
 module.exports = typeDefs;
