@@ -4,9 +4,16 @@ const typeDefs = gql`
   type Profile {
     _id: ID
     name: String
+    age: Number
     email: String
     password: String
-    skills: [String]!
+    instruments: [Instrument]
+  }
+
+  type Instrument {
+    instrumentName: String
+    yearsPlayed: Number
+    skillLevel: String
   }
 
   type Auth {
