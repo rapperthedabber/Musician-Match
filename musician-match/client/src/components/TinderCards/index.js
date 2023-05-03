@@ -1,7 +1,10 @@
+
 import React, {useState} from 'react'
 import TinderCard from 'react-tinder-card'
 
 export default function TinderCards() {
+
+
     const [person, setperson] =useState([
 {
      name: 'Freddie Mercury',
@@ -24,7 +27,7 @@ return(
     <div className='tinderContainer'>
   {person.map((people) => (
     
-    <TinderCard
+        <TinderCard
     className='swipe'
     key={person.name}
     preventSwipe={['up', 'down']}>
@@ -39,4 +42,24 @@ return(
   </div>
 </div>
 )
-}
+  }
+// import TinderCard from 'react-tinder-card'
+
+
+
+// export default function TinderCards() {
+// const onSwipe = (direction) => {
+    
+//   console.log('You swiped: ' + direction)
+// }
+
+// const onCardLeftScreen = (myIdentifier) => {
+//   console.log(myIdentifier + ' left the screen')
+// }
+
+// return (
+//   <TinderCard onSwipe={onSwipe} onCardLeftScreen={() => onCardLeftScreen('fooBar')} preventSwipe={['right', 'left']}>Hello, World!</TinderCard>
+// )
+
+// }
+// }
