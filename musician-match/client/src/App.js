@@ -14,7 +14,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import TinderCards from './components/TinderCards'
+import TinderCards from './components/ProfileList/TinderCards'
 
 const httpLink = createHttpLink({
   uri: '/graphql',

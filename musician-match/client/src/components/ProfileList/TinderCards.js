@@ -4,8 +4,8 @@ import TinderCard from 'react-tinder-card'
 export default function TinderCards() {
     const [person, setperson] =useState([
 {
-        name: 'Freddie Mercury',
-        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg/220px-Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg'
+     name: 'Freddie Mercury',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg/220px-Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg'
     },
 {
     name: 'Mick Jagger',
