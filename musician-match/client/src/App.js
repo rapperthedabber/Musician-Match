@@ -47,7 +47,7 @@ function App() {
             <Routes>
               <Route 
                 path="/" 
-                element={<Home />} 
+                element={<TinderCards />} 
               />
               <Route 
                 path="/login" 
@@ -66,9 +66,9 @@ function App() {
                 path="/profiles/:profileId" 
                 element={<Profile />} 
               />
-              <Route
+              {/* <Route
               path='/seeMatch'
-              element ={<TinderCards/>}/>
+              element ={<TinderCards/>}/> */}
             </Routes>
           </div>
           <Footer />
