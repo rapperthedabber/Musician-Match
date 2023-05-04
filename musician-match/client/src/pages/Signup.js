@@ -43,7 +43,7 @@ const Signup = () => {
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
-        <div className="card">
+        <div className = "login">
           <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
           <div className="card-body">
             {data ? (
@@ -77,6 +77,7 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+                <span>How old are you?</span>
                  <input
                   className="form-input"
                   placeholder="age"
@@ -85,6 +86,7 @@ const Signup = () => {
                   value={formState.age}
                   onChange={handleChange}
                 />
+                <span>What instrument do you play?</span>
                 <input
                   className="form-input"
                   placeholder="instrument"
@@ -93,12 +95,14 @@ const Signup = () => {
                   value={formState.instrument}
                   onChange={handleChange}
                 />
+                <span>Upload a picture of yourself</span>
+                 <input className={'m-2'} type="file" id="myFile" name="filename" />
+  <input type=""></input>
                 <button
                   className="btn btn-block btn-info"
                   style={{ cursor: 'pointer' }}
                   type="submit"
-                >
-                  Submit
+                >Submit
                 </button>
               </form>
             )}
