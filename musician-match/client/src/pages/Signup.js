@@ -13,6 +13,7 @@ const Signup = () => {
     password: '',
     age: '',
     instrument: ''
+
   });
   const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
 
