@@ -77,6 +77,22 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+                 <input
+                  className="form-input"
+                  placeholder="age"
+                  name="age"
+                  type="age"
+                  value={formState.age}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="instrument"
+                  name="instrument"
+                  type="instrument"
+                  value={formState.instrument}
+                  onChange={handleChange}
+                />
                 <button
                   className="btn btn-block btn-info"
                   style={{ cursor: 'pointer' }}
