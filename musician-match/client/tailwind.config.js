@@ -7,10 +7,22 @@ module.exports = {
   // Or if using `src` directory:
   "./src/**/*.{js,ts,jsx,tsx,mdx}",
 
+
   // Or if using `src` directory:
 ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes:{
+        form: {
+          '50%': {transform: 'rotateX(180deg'}
+        }
+      }, 
+      animation: {
+        vflip: 'form 2s'
+      }
+    },
+
   },
   plugins: [],
+  
 }
