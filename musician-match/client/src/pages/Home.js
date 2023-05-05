@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <main>
-      <div className="bg-white-900 w-screen h-screen flex-row justify-center">
+      <div className="Mybackground">
         <div className="col-12 col-md-10 my-3">
           {loading ? (
             <div>Loading...</div>

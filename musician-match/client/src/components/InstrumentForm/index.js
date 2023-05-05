@@ -2,14 +2,30 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
+
 import { ADD_INSTRUMENT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
 const InstrumentForm = ({ profileId }) => {
-  const [instrument, setInstrument] = useState('');
+  const [instrument, setInstrument] = useState({
+    instrument: ''
+});
+
+
+
 
   const [addInstrument, { error }] = useMutation(ADD_INSTRUMENT);
+
+  const handleChange = (event) => {
+    const { currentInstrument, value } = event.target;
+
+    setInstrument({
+      ...instrument,
+      [currentInstrument]: value,
+    });
+  };
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -26,15 +42,37 @@ const InstrumentForm = ({ profileId }) => {
   };
 
   return (
-    <div>
+    
+    <div >
+      
       <h4>Endorse some more instruments below.</h4>
 
       {Auth.loggedIn() ? (
-        <form
-          className="flex-row justify-center justify-space-between-md align-center"
-          onSubmit={handleFormSubmit}
+        <form 
+         onSubmit={handleFormSubmit}
         >
-          <div className="col-12 col-lg-9">
+           <span id= 'span'>Upload a picture of yourself</span>
+                 <input className={'m-2'} type="file" id="myFile" name="filename" />
+  <input type=""></input>
+          <span className={'flex space-x-4 ' }> what instrument do you play?</span>
+  <select name="instrument" id="instrumentId" value={setInstrument.currentInstrument} 
+  onChange={handleChange} > 
+<option value="Guitar">Guitar </option>
+<option value="Bass">bass</option>
+<option value="Drummer">drummer</option>
+<option value ='Vocalist'>vocalist</option>
+</select>
+<input
+                  className="form-input"
+                  placeholder="age"
+                  name="age"
+                  type="age"
+                  value={setInstrument.age}
+                  onChange={handleChange}
+                />
+                
+               
+          {/* <div className="col-12 col-lg-9">
             <input
               placeholder="Endorse some instruments..."
               value={instrument}
@@ -47,13 +85,14 @@ const InstrumentForm = ({ profileId }) => {
             <button className="btn btn-info btn-block py-3" type="submit">
               Endorse instrument
             </button>
-          </div>
+          </div> */}
           {error && (
             <div className="col-12 my-3 bg-danger text-white p-3">
               {error.message}
             </div>
           )}
         </form>
+       
       ) : (
         <p>
           You need to be logged in to endorse instruments. Please{' '}
@@ -61,6 +100,7 @@ const InstrumentForm = ({ profileId }) => {
         </p>
       )}
     </div>
+    
   );
 };
 
