@@ -36,7 +36,7 @@ const Profile = () => {
   if (!profile?.name) {
     return (
       <h4 className={'font-sans'}>
-        Hello
+        You need to be Logged in to view
       </h4>
     );
   }

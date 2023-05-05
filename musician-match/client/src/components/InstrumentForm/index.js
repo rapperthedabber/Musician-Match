@@ -71,6 +71,13 @@ const InstrumentForm = ({ profileId }) => {
                   onChange={handleChange}
                 />
                 
+                <button
+                  className="btn btn-block btn-info"
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
+                >
+                  Submit
+                </button>
                
           {/* <div className="col-12 col-lg-9">
             <input
