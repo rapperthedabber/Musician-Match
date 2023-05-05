@@ -36,7 +36,7 @@ const Profile = () => {
   if (!profile?.name) {
     return (
       <h4 className={'font-sans'}>
-       Login to begin matching with other musicians 
+        Hello
       </h4>
     );
   }
@@ -44,8 +44,7 @@ const Profile = () => {
   return (
     <div>
       <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
-        Instruments...
+        {profileId ? `${profile.name}'s` : 'Your'} Musician Profile
       </h2>
 
       {profile.instruments?.length > 0 && (
@@ -55,7 +54,7 @@ const Profile = () => {
         />
       )}
 
-      <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
+      <div className="my-4 p-4" >
         <InstrumentForm profileId={profile._id} />
       </div>
     </div>

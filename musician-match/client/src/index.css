@@ -1821,10 +1821,35 @@ label form [type='radio'] {
   background-position: center;
 }
 
-.Mybackground {
-
+.select{
+  justify-content: space-between;
 }
 
+.footer {
+  margin-top: 100px;
+}
+@media only screen and (max-width: 600px) {
+  .footer {
+    margin-top:200px
+  }
+}
+
+#seeCards{
+  background-color: white;
+  border-radius: 20px;
+  padding: 2px;
+  width: 25px;
+  height: 25px;
+ 
+}
+
+#seeChat{
+  background-color: white;
+  border-radius: 20px;
+  padding: 2px;
+  width: 25px;
+  height: 25px;
+}
 
 /* .form{
   -webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
