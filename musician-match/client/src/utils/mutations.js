@@ -12,12 +12,12 @@ export const ADD_PROFILE = gql`
   }
 `;
 
-export const ADD_INSTRUMENT = gql`
-  mutation addInstrument($profileId: ID!, $instrument: String!) {
-    addinstrument(profileId: $profileId, instrument: $instrument) {
+export const ADD_ABOUT = gql`
+  mutation addAbout($profileId: ID!, $instrument: String!, $age: Int!) {
+    addAbout(profileId: $profileId, instrument: $instrument, age: $age) {
       _id
       name
-      instruments
+      Abouts
     }
   }
 `;
@@ -35,11 +35,11 @@ export const LOGIN_USER = gql`
 `;
 
 export const REMOVE_INSTRUMENT = gql`
-  mutation removeInstrument($instrument: String!) {
-    removeInstrument(instrument: $instrument) {
+  mutation removeAbout($About: String!) {
+    removeAbout(About: $About) {
       _id
       name
-      instruments
+      Abouts
     }
   }
 `;
