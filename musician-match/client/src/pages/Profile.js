@@ -33,7 +33,7 @@ const Profile = () => {
     return <div>Loading...</div>;
   }
 
-  if (!profile?.name) {
+  if (!Auth.loggedIn()) {
     return (
       <h4 className={'font-sans'}>
         Hello
