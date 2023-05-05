@@ -15,9 +15,10 @@ export const ADD_PROFILE = gql`
 export const ADD_ABOUT = gql`
   mutation addAbout($profileId: ID!, $instrument: String!, $age: Int!) {
     addAbout(profileId: $profileId, instrument: $instrument, age: $age) {
-      _id
-      name
-      Abouts
+        _id
+        instrument
+        age
+
     }
   }
 `;
