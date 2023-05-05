@@ -27,6 +27,7 @@ const resolvers = {
 
       return { token, profile };
     },
+
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });
 
@@ -63,20 +64,21 @@ const resolvers = {
       // throw new AuthenticationError('You need to be logged in!');
     },
 
-    addInstrument: async (parent, { profileId, instrument }, context) => {
+    addAbout: async (parent, { profileId, instrument, age }, context) => {
       // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      if (context.user) {
+      // if (context.user) {
         return Profile.findOneAndUpdate(
           { _id: profileId },
           {
-            $addToSet: { instruments: instrument },
+            $addToSet: { instrument: instrument },
+            $set: { age: age },
           },
           {
             new: true,
             runValidators: true,
           }
         );
-      }
+      // }
       // If user attempts to execute this mutation and isn't logged in, throw an error
       // throw new AuthenticationError('You need to be logged in!');
     },

@@ -19,16 +19,13 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  age: {
-    type: String,
-    required: true,
-  },
-  instruments: [
-    {
+  instrument:[{
       type: String,
       trim: true,
-    },
-  ],
+  }],
+  age: {
+    type: Number,
+  }
 });
 
 // set up pre-save middleware to create password
