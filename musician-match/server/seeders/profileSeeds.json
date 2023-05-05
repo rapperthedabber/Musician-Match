@@ -3,28 +3,28 @@
     "name": "Brian Kernighan",
     "email": "bkernighan@techfriends.dev",
     "password": "password01",
-    "instruments": ["Piano", "Bass", "Vocals"],
+    "instrument": ["Piano", "Bass", "Vocals"],
     "age": 23
   },
   {
     "name": "Max Kanat-Alexander",
     "email": "mkanatalexander@techfriends.dev",
     "password": "password02",
-    "instruments": ["Java", "Perl", "Apache", "Python"],
+    "instrument": ["Java", "Perl", "Apache", "Python"],
     "age": 23
   },
   {
     "name": "Amiko",
     "email": "amiko@techfriends.dev",
     "password": "password03",
-    "instruments": ["NodeJS", "MySQL", "MongoDB", "React", "CSS-in-JS"],
+    "instrument": ["NodeJS", "MySQL", "MongoDB", "React", "CSS-in-JS"],
     "age": 23
   },
   {
     "name": "Kent Beck",
     "email": "kbeck@techfriends.dev",
     "password": "password04",
-    "instruments": [
+    "instrument": [
       "Test-Driven Development",
       "Extreme Programming",
       "Software Design Patterns",
@@ -36,14 +36,14 @@
     "name": "Edward V. Berard",
     "email": "evberard@techfriends.dev",
     "password": "password05",
-    "instruments": ["Object-Oriented Design"],
+    "instrument": ["Object-Oriented Design"],
     "age": 23
   },
   {
     "name": "Alan Kay",
     "email": "akay@techfriends.dev",
     "password": "password06",
-    "instruments": [
+    "instrument": [
       "Graphical User Interface (GUI) Design",
       "Jazz Guitar",
       "Education"
@@ -54,28 +54,28 @@
     "name": "C.A.R. Hoare",
     "email": "choare@techfriends.dev",
     "password": "password07",
-    "instruments": ["Algorithms", "Quicksort", "Hoare Logic"],
+    "instrument": ["Algorithms", "Quicksort", "Hoare Logic"],
     "age": 23
   },
   {
     "name": "David Thomas",
     "email": "dthomas@techfriends.dev",
     "password": "password08",
-    "instruments": ["Author", "Code Kata", "Ruby", "Pragmatic Programming"],
+    "instrument": ["Author", "Code Kata", "Ruby", "Pragmatic Programming"],
     "age": 23
   },
   {
     "name": "Donald Knuth",
     "email": "dknuth@techfriends.dev",
     "password": "password09",
-    "instruments": ["TeX Computer Typesetting", "Algorithms", "Author"],
+    "instrument": ["TeX Computer Typesetting", "Algorithms", "Author"],
     "age": 23
   },
   {
     "name": "Lernantino",
     "email": "lernantino@techfriends.dev",
     "password": "password10",
-    "instruments": [
+    "instrument": [
       "JavaScript",
       "CSS",
       "HTML",

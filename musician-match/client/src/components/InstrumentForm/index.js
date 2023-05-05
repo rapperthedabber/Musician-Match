@@ -3,26 +3,24 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 
-import { ADD_INSTRUMENT } from '../../utils/mutations';
+import { ADD_ABOUT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
 const InstrumentForm = ({ profileId }) => {
-  const [instrument, setInstrument] = useState({
-    instrument: ''
-});
+  const [about, setAbout] = useState({
+    instrument: '',
+    age: ''
+  });
 
-
-
-
-  const [addInstrument, { error }] = useMutation(ADD_INSTRUMENT);
+  const [addAbout, { instrument, age, error }] = useMutation(ADD_ABOUT);
 
   const handleChange = (event) => {
-    const { currentInstrument, value } = event.target;
+    const { detail, value } = event.target;
 
-    setInstrument({
-      ...instrument,
-      [currentInstrument]: value,
+    setAbout({
+      ...about,
+      [detail]: value,
     });
   };
 
@@ -31,26 +29,27 @@ const InstrumentForm = ({ profileId }) => {
     event.preventDefault();
 
     try {
-      const data = await addInstrument({
-        variables: { profileId, instrument },
+      const data = await addAbout({
+        variables: { profileId, instrument, age }, //could def be wrong
       });
 
-      setInstrument('');
+      setAbout('');
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    
+
     <div >
-      
+
       <h4>Endorse some more instruments below.</h4>
 
       {Auth.loggedIn() ? (
-        <form 
-         onSubmit={handleFormSubmit}
+        <form
+          onSubmit={handleFormSubmit}
         >
+
            <span id= 'span'>Upload a picture of yourself</span>
                  <input className={'m-2'} type="file" id="myFile" name="filename" />
   <input type=""></input>
@@ -79,6 +78,7 @@ const InstrumentForm = ({ profileId }) => {
                   Submit
                 </button>
                
+
           {/* <div className="col-12 col-lg-9">
             <input
               placeholder="Endorse some instruments..."
@@ -99,7 +99,7 @@ const InstrumentForm = ({ profileId }) => {
             </div>
           )}
         </form>
-       
+
       ) : (
         <p>
           You need to be logged in to endorse instruments. Please{' '}
@@ -107,7 +107,7 @@ const InstrumentForm = ({ profileId }) => {
         </p>
       )}
     </div>
-    
+
   );
 };
 
