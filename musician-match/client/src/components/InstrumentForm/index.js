@@ -49,26 +49,35 @@ const InstrumentForm = ({ profileId }) => {
         <form
           onSubmit={handleFormSubmit}
         >
-          <span id='span'>Upload a picture of yourself</span>
-          <input className={'m-2'} type="file" id="myFile" name="filename" />
-          <input type=""></input>
-          <span className={'flex space-x-4 '}> what instrument do you play?</span>
-          <select name="instrument" id="instrumentId" value={setAbout.instrument}
-            onChange={handleChange} >
-            <option value="Guitar">Guitar </option>
-            <option value="Bass">Bass</option>
-            <option value="Drummer">Drummer</option>
-            <option value='Vocalist'>Vocalist</option>
-          </select>
-          <input
-            className="form-input"
-            placeholder="age"
-            name="age"
-            type="age"
-            value={setAbout.age}
-            onChange={handleChange}
-          />
 
+           <span id= 'span'>Upload a picture of yourself</span>
+                 <input className={'m-2'} type="file" id="myFile" name="filename" />
+  <input type=""></input>
+          <span className={'flex space-x-4 ' }> what instrument do you play?</span>
+  <select name="instrument" id="instrumentId" value={setInstrument.currentInstrument} 
+  onChange={handleChange} > 
+<option value="Guitar">Guitar </option>
+<option value="Bass">bass</option>
+<option value="Drummer">drummer</option>
+<option value ='Vocalist'>vocalist</option>
+</select>
+<input
+                  className="form-input"
+                  placeholder="age"
+                  name="age"
+                  type="age"
+                  value={setInstrument.age}
+                  onChange={handleChange}
+                />
+                
+                <button
+                  className="btn btn-block btn-info"
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
+                >
+                  Submit
+                </button>
+               
 
           {/* <div className="col-12 col-lg-9">
             <input
