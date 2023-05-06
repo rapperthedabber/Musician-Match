@@ -1826,7 +1826,7 @@ label form [type='radio'] {
 }
 
 .footer {
-  margin-top: 100px;
+  margin-top: 200px;
 }
 @media only screen and (max-width: 600px) {
   .footer {
@@ -1838,54 +1838,119 @@ label form [type='radio'] {
   background-color: white;
   border-radius: 20px;
   padding: 2px;
-  width: 25px;
-  height: 25px;
- 
+  width: 35px;
+  height: 35px;
+  vertical-align: middle;
+  margin: 10px;
+ display: inline-block;
 }
 
 #seeChat{
   background-color: white;
   border-radius: 20px;
   padding: 2px;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
+  vertical-align: middle;
+  margin: 10px;
+  display: inline-block;
+}
+@media only screen and (max-width: 600px) {
+#seeCards{
+  background-color: white;
+  border-radius: 20px;
+  padding: 2px;
+  width: 35px;
+  height: 35px;
+  margin: 10px;
+
+
+
+
+}
+#seeChat{
+  background-color: white;
+  border-radius: 20px;
+  padding: 2px;
+  width: 35px;
+  height: 35px;
+  margin: 10px;
+ 
+
+ 
+
+}
+  
+  }
+
+
+.Chat{
+  border:solid;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between ;
+  padding: 20px;
+  margin: 20px;
+  opacity: 0.5;
+}
+.Chat:hover{
+  opacity: 100;
+
 }
 
-/* .form{
-  -webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-  animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+#profilePic{
+width: 80px;
+height: 80px;
+margin-right: 20px;
+  
 }
 
-@-webkit-keyframes form {
-  0% {
-    -webkit-transform: scale(2);
-            transform: scale(2);
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
-    opacity: 1;
+.chatScreenMessage{
+align-items: center;
+  border-radius: 20px;
+  display:flex
+}
+
+#chatMessage{
+  margin-left: 10px;
+  background-color: lightgray;
+  padding: 15px;
+}
+
+.myChatScreenMessage{
+  align-items: center;
+  border-radius: 20px;
+  display:flex
+}
+
+#myMessage{
+  margin-bottom: 300px;
+  margin-left: auto;
+  background-color: lightseagreen;
+  padding: 15px;
+}
+
+#sendMessage{
+  display: flex;
+  flex: auto;
+  padding: 15px;
+  float: right;
+  width: 1120px;
+  background-color: lightgray;
+  margin: 10px;
+  margin-right: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  #sendMessage {
+    display: flex;
+    flex: auto;
+    padding: 15px;
+    float: right;
+    width: 410px;
+    background-color: lightgray;
+    margin: 10px;
+  
   }
 }
-@keyframes form {
-  0% {
-    -webkit-transform: scale(2);
-            transform: scale(2);
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
-    opacity: 1;
-  }
-} */
-
