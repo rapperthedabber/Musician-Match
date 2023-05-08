@@ -20,8 +20,13 @@ export default function TinderCards() {
 ,{
     name: 'Adam Jones',
     url:"https://cdn.mos.cms.futurecdn.net/uLAV8J7KdcAcktvadEayxd-970-80.jpg.webp"
+    
 }])
+const onSwipe = (direction) => {
+    alert('You swiped: ' + direction)
+  }
 return(
+    
 <div>
     <h1>Music Cards</h1>
     <div className='tinderContainer'>
@@ -30,6 +35,8 @@ return(
         <TinderCard
     className='swipe'
     key={person.name}
+    onSwipe={onSwipe
+    }
     preventSwipe={['up', 'down']}>
         <div 
          style = {{backgroundImage: `url(${people.url})`}}
