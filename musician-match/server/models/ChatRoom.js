@@ -28,6 +28,6 @@ const chatRoomSchema = new Schema(
       }
 );
 
-const ChatRoom = new model('ChatRoom', chatRoomSchema);
+const ChatRoom = model('ChatRoom', chatRoomSchema);
 
-module.export = ChatRoom;
+module.exports = ChatRoom;
