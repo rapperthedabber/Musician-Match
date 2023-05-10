@@ -18,6 +18,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    
   },
 
   Mutation: {
@@ -64,14 +65,14 @@ const resolvers = {
       // throw new AuthenticationError('You need to be logged in!');
     },
 
-    addAbout: async (parent, { profileId, instrument, age }, context) => {
+    addAbout: async (parent, { profileId, instrument, age, image }, context) => {
       // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
       // if (context.user) {
         return Profile.findOneAndUpdate(
           { _id: profileId },
           {
             $addToSet: { instrument: instrument },
-            $set: { age: age },
+            $set: { age: age, image: image},
           },
           {
             new: true,

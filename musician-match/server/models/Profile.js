@@ -25,6 +25,11 @@ const profileSchema = new Schema({
   }],
   age: {
     type: Number,
+  },
+  image: {
+    type: String,
+    trim: true,
+    // match: [/^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png)$/i, 'Must be a valid image URL, ending in jpg, gif, or png']
   }
 });
 
