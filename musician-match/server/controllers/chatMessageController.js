@@ -1,4 +1,4 @@
-const { ChatMessage, ChatRoom } = require('../models');
+const { ChatMessage, ChatRoom, Profile } = require('../models');
 
 module.exports = {
     // create
@@ -14,12 +14,6 @@ module.exports = {
             const sender = await Profile.findOne({ _id: req.body.senderId });
             if (!sender) {
                 const error = new Error('The sender User Id does not exist');
-                error.statusCode = 404;
-                throw error
-            }
-
-            if (req.body.initiatorId === req.body.receiverId) {
-                const error = new Error('Can not create a chat room with yourself');
                 error.statusCode = 404;
                 throw error
             }
@@ -58,7 +52,7 @@ module.exports = {
     // read by chat room id
     async getChatMessagesByChatRoomId(req, res, next) {
         try {
-            const chatMessages = await ChatMessage.find({ chatRoomId: req.params.chatRoomId }).sort([['createdAt', -1]]);
+            const chatMessages = await ChatMessage.find({ chatRoomId: req.params.chatRoomId }).sort([['createdAt', 1]]);
 
             res.json(chatMessages);
         } catch (err) {
@@ -77,7 +71,7 @@ module.exports = {
                 throw error
             }
     
-            res.json({ message: 'Chat Room successfully deleted' });
+            res.json({ message: 'Chat Message successfully deleted' });
         } catch (err) {
             console.log(err);
             next(err);
