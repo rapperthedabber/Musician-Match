@@ -1796,8 +1796,14 @@ label form [type='radio'] {
 
 }
 #name{
-  color: white;
+  color:white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#instrument{
+  background-color: black;
+  color: yellow;
+  font-family: monospace;
+  width: 120px;
 }
 .tinderContainer{
   display: flex;
@@ -1954,3 +1960,37 @@ align-items: center;
   
   }
 }
+
+#previewImage{
+  width: 400px;
+  height: 400px;
+  border:solid;
+  border-radius: 20px;
+  float: right;
+  margin: 20px;
+  margin-right: 30px;
+font-family: monospace;
+  font-size: 100px;
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+#previewImage{
+  
+  width: 200px;
+  height: 200px;
+  border:solid;
+  border-radius: 20px;
+  float: right;
+  margin: 20px;
+  margin-right: 30px;
+  font-family: monospace;
+  font-size: 50px;
+  text-align: center;
+
+}
+  
+  }
+
+  #instrumentId{
+    width: 200px;
+  }
