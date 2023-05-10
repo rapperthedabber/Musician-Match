@@ -2,9 +2,7 @@ const { ChatRoom, Profile } = require('../models');
 
 module.exports = {
     async createChatRoom(req, res, next) {
-        try {
-            const chatRoom = await ChatRoom.create(req.body);
-      
+        try {      
             const initiator = await Profile.findOne({ _id: req.body.initiatorId });
             if (!initiator) {
                 const error = new Error('The sending User Id does not exist');
@@ -15,6 +13,12 @@ module.exports = {
             const receiver = await Profile.findOne({ _id: req.body.receiverId });
             if (!receiver) {
                 const error = new Error('The receving User Id does not exist');
+                error.statusCode = 404;
+                throw error
+            }
+
+            if (req.body.initiatorId === req.body.receiverId) {
+                const error = new Error('Can not create a chat room with yourself');
                 error.statusCode = 404;
                 throw error
             }
@@ -31,13 +35,13 @@ module.exports = {
                     ]}
                 ]
             })
-            if (existingChatRoom != nil) {
+            if (existingChatRoom) {
                 const error = new Error('This Chat Room already exists');
                 error.statusCode = 404;
                 throw error
             }
 
-            
+            const chatRoom = await ChatRoom.create(req.body);
             chatRoom.save();
       
             res.json(chatRoom);
