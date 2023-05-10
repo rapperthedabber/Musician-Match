@@ -7,7 +7,6 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const routes = require('./routes');
-//const errorHandler = require('./controllers/errorController');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -16,11 +15,6 @@ const server = new ApolloServer({
   resolvers,
   context: authMiddleware,
 });
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(routes);
-
 const errorHandler = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
@@ -28,6 +22,9 @@ const errorHandler = (err, req, res, next) => {
   res.status(statusCode).json({ error: message });
 };
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(routes);
 app.use(errorHandler);
 
 
