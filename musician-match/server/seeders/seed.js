@@ -12,7 +12,7 @@ db.once('open', async () => {
     const profiles = await Profile.create(profileSeeds);
 
     // creating 3 chat rooms
-    const chatRooms = [];
+    let chatRooms = [];
     for (let i = 0; i < 3; i++) {
       chatRooms.push({
         initiatorId: profiles[0]._id,
@@ -21,7 +21,8 @@ db.once('open', async () => {
       });
     }
 
-    await ChatRoom.insertMany(chatRooms);
+    chatRooms = await ChatRoom.create(chatRooms);
+    console.log(chatRooms[0]._id);
 
     // add 4 messages to the 3 chat rooms
     for (let i = 0; i < 3; i++) {

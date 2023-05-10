@@ -1,16 +1,26 @@
 const router = require('express').Router();
 
 const {
-    getChatRooms,
-    createChatRoom
-} = require('../../controllers/chatRoomController');
+    getChatMessages,
+    createChatMessage,
+    getChatMessage,
+    deleteChatMessage,
+    getChatMessagesByChatRoomId
+} = require('../../controllers/chatMessageController');
 
-// /api/chatRooms
+// /api/chatMessages
 router.route('/')
-    .get(getChatRooms)
-    .post(createChatRoom);
+    .get(getChatMessages)
+    .post(createChatMessage);
 
 
-// /api/chatRooms/:chatRoomId
+// /api/chatMessages/:chatMessageId
+router.route('/:chatMessageId')
+    .get(getChatMessage)
+    .delete(deleteChatMessage)
 
-// /api/chatRooms/:profileId
+// /api/chatMessages/chatRoom/:chatRoomId
+router.route('/chatRoom/:chatRoomId')
+    .get(getChatMessagesByChatRoomId)
+
+module.exports = router;
