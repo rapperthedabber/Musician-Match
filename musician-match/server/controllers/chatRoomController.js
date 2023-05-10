@@ -37,7 +37,7 @@ module.exports = {
             })
             if (existingChatRoom) {
                 const error = new Error('This Chat Room already exists');
-                error.statusCode = 404;
+                error.statusCode = 400;
                 throw error
             }
 
@@ -57,7 +57,7 @@ module.exports = {
             res.json(chatRooms);
         } catch (err) {
             console.log(err);
-            return res.status(500).json(err);
+            next(err);
         }
     },
     async getChatRoomByChatRoomId(req, res) {
@@ -67,7 +67,7 @@ module.exports = {
             res.json(chatRooms);
         } catch (err) {
             console.log(err);
-            return res.status(500).json(err);
+            next(err);
         }
     },
     async getChatRoomsByProfileId(req, res, next) {
@@ -82,7 +82,7 @@ module.exports = {
             res.json(chatRooms);
         } catch (err) {
             console.log(err);
-            return res.status(500).json(err);
+            next(err);
         }
     },
     async updateChatRoom(req, res, next) {
@@ -94,13 +94,15 @@ module.exports = {
             );
       
             if (!chatRoom) {
-                throw new Error('No Chat Room with this id!');
+                const error = new Error('No Chat Room with this Id exists');
+                error.statusCode = 404;
+                throw error
             }
       
             res.json(chatRoom);
           } catch (err) {
             console.log(err);
-            res.status(500).json(err);
+            next(err);
           }
     },
     async deleteChatRoom(req, res, next) {
@@ -108,13 +110,15 @@ module.exports = {
             const chatRoom = await ChatRoom.findOneAndRemove({ _id: req.params.chatRoomId });
     
             if (!chatRoom) {
-                throw new Error('No Chat Room with this id!');
+                const error = new Error('No Chat Room with this Id exists');
+                error.statusCode = 404;
+                throw error
             }
     
             res.json({ message: 'Chat Room successfully deleted' });
         } catch (err) {
             console.log(err);
-            res.status(500).json(err);
+            next(err);
         }
     }
 }
