@@ -7,32 +7,17 @@ import { encode, decode } from 'https://cdn.jsdelivr.net/npm/js-base64@3.7.5/bas
 import placeholder from '../../assets/placeholder.png'
 import Auth from '../../utils/auth'
 
-import { QUERY_PROFILES } from '../../utils/queries'
+import { QUERY_PROFILES, QUERY_ME } from '../../utils/queries'
 import { ADD_LIKE } from '../../utils/mutations';
 
 
 export default function TinderCards() {
-    const { loading, data } = useQuery(QUERY_PROFILES);
-    const people = data?.profiles || [];
-
+    const { data: data1 } = useQuery(QUERY_PROFILES);
+    const { data: data2 } = useQuery(QUERY_ME)
+    const people = data1?.profiles || [];
     const [likeProfile] = useMutation(ADD_LIKE) 
-//     const [person, setperson] =useState([
-// {
-//      name: 'Freddie Mercury',
-//     url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg/220px-Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg'
-//     },
-// {
-//     name: 'Mick Jagger',
-//     url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Mick_Jagger_Deauville_2014.jpg/220px-Mick_Jagger_Deauville_2014.jpg'
-// }, {
-//     name: 'Elvis Presley',
-//     url: 'https://www.gannett-cdn.com/presto/2021/08/12/PMCA/371d3991-9f87-4267-b38e-c472f6c9316c-Elvis_60s_08.JPG?width=300&height=395&fit=crop&format=pjpg&auto=webp'
-// }
-// ,{
-//     name: 'Adam Jones',
-//     url:"https://cdn.mos.cms.futurecdn.net/uLAV8J7KdcAcktvadEayxd-970-80.jpg.webp"
-    
-// }])
+    const myId = data2?.me._id
+    console.log(myId, "myId")
 
 
 
@@ -53,8 +38,12 @@ const onSwipe = (direction) => {
   return direction
 }
 
-const onCardLeftScreen = (myIdentifier) => {
-  console.log(myIdentifier + ' left the screen')
+const onCardLeftScreen = (myIdentifier, theirLikes) => {
+  console.log(myIdentifier + ' left the screen', theirLikes)
+  if (theirLikes.includes(Auth.getProfile().data._id)) {
+    console.log('Match worked')
+    alert("You Matched!")
+  }
       return likeProfile({
         variables: { profileId: Auth.getProfile().data._id, likedProfileId: myIdentifier }
       })
@@ -71,7 +60,7 @@ return(
     key={person._id}
     value={person._id}
     onSwipe={onSwipe}
-    onCardLeftScreen={() => onCardLeftScreen(person._id)}
+    onCardLeftScreen={() => onCardLeftScreen(person._id, person.likedProfiles)}
     preventSwipe={['up', 'down']}
     
     >
