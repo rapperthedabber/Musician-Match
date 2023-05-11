@@ -19,8 +19,8 @@ const InstrumentForm = ({ profileId }) => {
   const [formState, setFormState] = useState({
     instrument: '',
     age: '',
-    url: '',
-    bio: ''
+    bio: '',
+    url: ''
   });
 
   const [addAbout, { data, error }] = useMutation(ADD_ABOUT);
@@ -52,7 +52,7 @@ const InstrumentForm = ({ profileId }) => {
     // console.log(finalImg)
     try {
       const { data }= await addAbout({
-        variables: { url: formState.url, instrument: formState.instrument, age: +formState.age, profileId: Auth.getProfile().data._id }, //could def be wrong
+        variables: { bio: formState.bio, url: formState.url, instrument: formState.instrument, age: +formState.age, profileId: Auth.getProfile().data._id }, //could def be wrong
       });
     
     } catch (err) {
@@ -61,53 +61,53 @@ const InstrumentForm = ({ profileId }) => {
   };
   // const [Home, setHome] = useState(false)
 
-  function renderCard() {
-    return (
-      !formState.age || !formState.instrument ? (
+  // function renderCard() {
+  //   return (
+  //     !formState.age || !formState.instrument ? (
 
-        alert('please fill out form')
-      ) : (
-        alert('it worked!')
-
-
-
-      )
-    )
-
-  }
-
-  const [preview, setPreview] = useState();
-  // const classes = useStyles();
-  const handleCreateBase64 =
-    useCallback(async (e) => {
-      const file = e.target.files[0];
-      const base64 = await convertToBase64(file);
-      setPreview(base64)
-      e.target.value = ''
-
-    }, [])
+  //       alert('please fill out form')
+  //     ) : (
+  //       alert('it worked!')
 
 
-  const convertToBase64 = (url) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      if (!url) {
-        alert('Please select an url')
-      } else {
-        fileReader.readAsDataURL(url);
-        fileReader.onload = () => {
-          resolve(fileReader.result)
-        }
-      }
-      fileReader.onerror = (error) => {
-        reject(error);
-      }
-    }
-    )
-  }
+
+  //     )
+  //   )
+
+  // }
+
+  // const [preview, setPreview] = useState();
+  // // const classes = useStyles();
+  // const handleCreateBase64 =
+  //   useCallback(async (e) => {
+  //     const file = e.target.files[0];
+  //     const base64 = await convertToBase64(file);
+  //     setPreview(base64)
+  //     e.target.value = ''
+
+  //   }, [])
+
+
+  // const convertToBase64 = (url) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     if (!url) {
+  //       alert('Please select an url')
+  //     } else {
+  //       fileReader.readAsDataURL(url);
+  //       fileReader.onload = () => {
+  //         resolve(fileReader.result)
+  //       }
+  //     }
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     }
+  //   }
+  //   )
+  // }
 
   console.log(formState)
-  let Navigate = useNavigate()
+  // let Navigate = useNavigate()
 
   return (
 
@@ -118,9 +118,9 @@ const InstrumentForm = ({ profileId }) => {
         <form onSubmit={handleFormSubmit} >
           <span id='span' htmlFor = 'url' className={' flex '}>Upload a picture of yourself: </span>
           {/* <input className={'m-2'} type="file" id="myFile" name="filename" onChange={handleCreateBase64} /> */}
-          <input id = 'urlLink'type='url' name ='url' onChange={handleChange
+          <input id = 'urlLink'type='url' name ='url' value={formState.url} onChange={handleChange
           } ></input>
-         {formState.url && <img src = {formState.url} id ='previewurl'alt ='no Photo'/>}
+         {formState.url && <img src={formState.url} id ='previewurl'alt ='Where you should go'/>}
           <span className={'flex space-x-4 mt-5 font-mono'}> what instrument do you play?</span>
           <select name="instrument" id="instrumentId" value={formState.instrument}
             onChange={handleChange} required>
@@ -142,7 +142,16 @@ const InstrumentForm = ({ profileId }) => {
             required />
 
             <label>Tell everyone about you!</label>
-            <input id= 'bio' placeholder='ex. I love Music Match!'></input>
+            <input
+            className="form-input"
+            placeholder="Ex. I Love Music Match!"
+            name="bio"
+            type="text"
+            value={formState.bio}
+            onChange={handleChange}
+
+
+             />
 
 
           <button
@@ -150,11 +159,12 @@ const InstrumentForm = ({ profileId }) => {
             style={{ cursor: 'pointer' }}
             type="submit"
             // onClick={renderCard}
-            onClick={() => !formState.instrument && !formState.age && !formState.bio ? (
-              alert('please fill out instrument and age')) :
-              (
-                Navigate('/')
-                )}>
+            // onClick={() => !formState.instrument && !formState.age && !formState.bio ? (
+            //   alert('please fill out instrument and age')) :
+            //   (
+            //     Navigate('/')
+            //     )}
+                >
             Submit
           </button>
 
