@@ -1,18 +1,21 @@
 
 import React, { useState } from 'react'
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import TinderCard from 'react-tinder-card'
 import { encode, decode } from 'https://cdn.jsdelivr.net/npm/js-base64@3.7.5/base64.mjs'
 
 import placeholder from '../../assets/placeholder.png'
+import Auth from '../../utils/auth'
 
 import { QUERY_PROFILES } from '../../utils/queries'
+import { ADD_LIKE } from '../../utils/mutations';
 
 
 export default function TinderCards() {
     const { loading, data } = useQuery(QUERY_PROFILES);
     const people = data?.profiles || [];
-    
+
+    const [likeProfile] = useMutation(ADD_LIKE) 
 //     const [person, setperson] =useState([
 // {
 //      name: 'Freddie Mercury',
@@ -33,10 +36,30 @@ export default function TinderCards() {
 
 
 
+// const onSwipe = (direction) => {
+//     console.log(direction)
+//     if (direction === 'right') {
+//       console.log('hey', direction)
+//       const { data } = likeProfile({
+//         variables: { profileId: Auth.getProfile().data._id, likedProfileId: TinderCard.value }
+//       })
+//     }
+//     if (direction === 'left') {
+//       console.log('goodbye', direction)
+//     }
+//   }
 const onSwipe = (direction) => {
-    
-    alert('You swiped: ' + direction)
-  }
+  direction.preventDefault()
+  console.log('You swiped: ' + direction)
+  return direction
+}
+
+const onCardLeftScreen = (myIdentifier) => {
+  console.log(myIdentifier + ' left the screen')
+      return likeProfile({
+        variables: { profileId: Auth.getProfile().data._id, likedProfileId: myIdentifier }
+      })
+    }
 return(
     
 <div>
@@ -46,12 +69,17 @@ return(
     
         <TinderCard
     className='swipe'
-    key={person.name}
+    key={person._id}
+    value={person._id}
     onSwipe={onSwipe}
-    preventSwipe={['up', 'down']}>
+    onCardLeftScreen={() => onCardLeftScreen(person._id)}
+    preventSwipe={['up', 'down']}
+    
+    >
         <div 
-         style = {{backgroundImage: `url(${person.image ? person.image : placeholder})`}}
-        className='card'>
+        style = {{backgroundImage: `url(${person.image ? person.image : placeholder})`}}
+        className='card'
+        onChange={console.log(person._id)}>
    <h1 id="name">{person.name}</h1>
    </div>
    </TinderCard>

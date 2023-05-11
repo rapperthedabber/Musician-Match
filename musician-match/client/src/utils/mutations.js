@@ -35,6 +35,14 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const ADD_LIKE = gql`
+  mutation likeProfile($profileId: ID!, $likedProfileId: ID!) {
+    likeProfile(profileId: $profileId, likedProfileId: $likedProfileId) {
+     _id
+    }
+  }
+`;
+
 export const REMOVE_INSTRUMENT = gql`
   mutation removeAbout($About: String!) {
     removeAbout(About: $About) {

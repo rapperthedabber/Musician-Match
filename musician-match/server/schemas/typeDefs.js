@@ -9,6 +9,7 @@ const typeDefs = gql`
     instrument: [String]
     age: Int
     image: String
+    likedProfiles: [ID]
   }
 
   type About {
@@ -32,6 +33,7 @@ const typeDefs = gql`
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addAbout(profileId: ID!, instrument: String!, age: Int!, image: String!): Profile
+    likeProfile(profileId: ID!, likedProfileId: ID!): Profile
   
 
     addSkill(profileId: ID!, skill: String!): Profile

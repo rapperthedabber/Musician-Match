@@ -29,8 +29,10 @@ const profileSchema = new Schema({
   image: {
     type: String,
     trim: true,
-    // match: [/^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png)$/i, 'Must be a valid image URL, ending in jpg, gif, or png']
-  }
+  },
+  likedProfiles: [{
+    type: String,
+  }]
 });
 
 // set up pre-save middleware to create password

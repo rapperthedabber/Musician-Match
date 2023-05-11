@@ -18,7 +18,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    
+
   },
 
   Mutation: {
@@ -46,6 +46,18 @@ const resolvers = {
       return { token, profile };
     },
 
+    likeProfile: async (parent, { profileId, likedProfileId }, context) => {
+      return Profile.findOneAndUpdate(
+        { _id: profileId },
+        {
+          $addToSet: { likedProfiles: likedProfileId }
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
+    },
     // Add a third argument to the resolver to access data in our `context`
     addSkill: async (parent, { profileId, skill }, context) => {
       // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
@@ -68,22 +80,22 @@ const resolvers = {
     addAbout: async (parent, { profileId, instrument, age, image }, context) => {
       // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
       // if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: profileId },
-          {
-            $addToSet: { instrument: instrument },
-            $set: { age: age, image: image},
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
+      return Profile.findOneAndUpdate(
+        { _id: profileId },
+        {
+          $addToSet: { instrument: instrument },
+          $set: { age: age, image: image },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
       // }
       // If user attempts to execute this mutation and isn't logged in, throw an error
       // throw new AuthenticationError('You need to be logged in!');
     },
-  
+
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
       if (context.user) {
@@ -91,6 +103,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
     // Make it so a logged in user can only remove a skill from their own profile
     removeSkill: async (parent, { skill }, context) => {
       if (context.user) {
