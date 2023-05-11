@@ -2,22 +2,18 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_PROFILE_CHATROOMS } from '../utils/queries';
 import Auth from '../utils/auth';
-import ChatRoomBox from '../components/Chat/ChatRoomBox';
+import ChatRooms from '../components/Chat/ChatRooms';
 
 const Chat = () => {
-    const queryRes = useQuery(QUERY_ME);
-    const profileId = queryRes?.data?.me?._id;
-    console.log(profileId)
+    const  {loading, data } = useQuery(QUERY_ME);
 
-    const { loading, data } = useQuery(QUERY_PROFILE_CHATROOMS, { variables: { profileId: profileId } });
 
-    let chatRooms = []
-    chatRooms = data?.chatRoomsByProfileId;
-
-    if (loading) {
+    if (loading || !data) {
         return <div>Loading...</div>;
     }
 
+    const profile = data?.me;
+    
     if (!Auth.loggedIn()) {
         return (
             <h4 className={'font-sans'}>
@@ -28,14 +24,7 @@ const Chat = () => {
 
     return (
         <div>
-            {chatRooms.map((chatRoom) => (
-                <div>
-                    <ChatRoomBox
-                        profileId={profileId}
-                        baseChatRoomInfo={chatRoom}
-                    />
-                </div>
-            ))}
+            <ChatRooms profile={profile}/>
         </div>
     );
 };
