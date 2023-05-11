@@ -49,7 +49,6 @@ export default function TinderCards() {
 //     }
 //   }
 const onSwipe = (direction) => {
-  direction.preventDefault()
   console.log('You swiped: ' + direction)
   return direction
 }
@@ -79,7 +78,7 @@ return(
         <div 
         style = {{backgroundImage: `url(${person.image ? person.image : placeholder})`}}
         className='card'
-        onChange={console.log(person._id)}>
+        >
    <h1 id="name">{person.name}</h1>
    </div>
    </TinderCard>
