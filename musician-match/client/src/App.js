@@ -16,7 +16,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import TinderCards from './components/TinderCards'
 import Chat from './pages/Chat'
-import ChatScreen from './components/ChatScreen'
+import ChatRoom from './components/Chat/ChatRoom'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -73,8 +73,8 @@ function App() {
               path ="/chat"
               element = {<Chat/>}/>
                <Route 
-              path ="/chat/:person"
-              element = {<ChatScreen/>}/>
+              path ="/chat/:chatRoomId"
+              element = {<ChatRoom/>}/>
               {/* <Route
               path='/seeMatch'
               element ={<TinderCards/>}/> */}

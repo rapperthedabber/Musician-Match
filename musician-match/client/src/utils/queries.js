@@ -45,3 +45,14 @@ export const QUERY_PROFILE_CHATROOMS = gql`
     }
   }
 `;
+
+export const QUERY_MESSAGES_BY_CHATROOM = gql`
+  query messagesByChatRoom($chatRoomId: ID!) {
+    chatMessagesByChatRoomId(chatRoomId: $chatRoomId) {
+      _id
+      chatRoomId
+      senderId
+      message
+    }
+  }
+`;
