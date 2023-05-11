@@ -6,7 +6,6 @@ import { useMutation } from '@apollo/client';
 // import { makeStyles } from '@material-ui/core';
 
 import { ADD_ABOUT } from '../../utils/mutations';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
@@ -39,12 +38,23 @@ const InstrumentForm = ({ profileId }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(Auth.getProfile().data._id)
+    // const link = event.target[0].files[0]
+    // const urlLink = URL.createObjectURL(link)
+    // // const url = formState.url
+    // const fileReader = new FileReader()
+    // fileReader.onload = function() {
+    //   // console.log(fileReader.result)
+    //   const result = toString(fileReader.result)
+    //   return result
+    // }
+    // const finalImg = fileReader.onload
+    // fileReader.readAsDataURL(link)
+    // console.log(finalImg)
     try {
-      const { data } = await addAbout({
-        variables: { instrument: formState.instrument, age: +formState.age, profileId: Auth.getProfile().data._id }, //could def be wrong
+      const { data }= await addAbout({
+        variables: { url: formState.url, instrument: formState.instrument, age: +formState.age, profileId: Auth.getProfile().data._id }, //could def be wrong
       });
-
+    
     } catch (err) {
       console.error(err);
     }
@@ -82,7 +92,7 @@ const InstrumentForm = ({ profileId }) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       if (!url) {
-        alert('Please select an image')
+        alert('Please select an url')
       } else {
         fileReader.readAsDataURL(url);
         fileReader.onload = () => {
@@ -108,9 +118,9 @@ const InstrumentForm = ({ profileId }) => {
         <form onSubmit={handleFormSubmit} >
           <span id='span' htmlFor = 'url' className={' flex '}>Upload a picture of yourself: </span>
           {/* <input className={'m-2'} type="file" id="myFile" name="filename" onChange={handleCreateBase64} /> */}
-          <input id = 'imageLink'type='url' name ='url' onChange={handleChange
+          <input id = 'urlLink'type='url' name ='url' onChange={handleChange
           } ></input>
-         {formState.url && <img src = {formState.url} id ='previewImage'alt ='no Photo'/>}
+         {formState.url && <img src = {formState.url} id ='previewurl'alt ='no Photo'/>}
           <span className={'flex space-x-4 mt-5 font-mono'}> what instrument do you play?</span>
           <select name="instrument" id="instrumentId" value={formState.instrument}
             onChange={handleChange} required>

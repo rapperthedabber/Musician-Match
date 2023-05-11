@@ -1,89 +1,41 @@
 [
   {
-    "name": "Brian Kernighan",
-    "email": "bkernighan@techfriends.dev",
-    "password": "password01",
-    "instrument": ["Piano", "Bass", "Vocals"],
-    "age": 23
-  },
-  {
-    "name": "Max Kanat-Alexander",
-    "email": "mkanatalexander@techfriends.dev",
-    "password": "password02",
-    "instrument": ["Java", "Perl", "Apache", "Python"],
-    "age": 23
-  },
-  {
-    "name": "Amiko",
-    "email": "amiko@techfriends.dev",
-    "password": "password03",
-    "instrument": ["NodeJS", "MySQL", "MongoDB", "React", "CSS-in-JS"],
-    "age": 23
-  },
-  {
-    "name": "Kent Beck",
-    "email": "kbeck@techfriends.dev",
-    "password": "password04",
-    "instrument": [
-      "Test-Driven Development",
-      "Extreme Programming",
-      "Software Design Patterns",
-      "JUnit"
-    ],
-    "age": 23
-  },
-  {
     "name": "Edward V. Berard",
     "email": "evberard@techfriends.dev",
     "password": "password05",
     "instrument": ["Object-Oriented Design"],
-    "age": 23
+    "age": 23,
+    "bio": "big fan of socks",
+    "url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.EbPBXtAj88zRhtr9bGks3gHaE8%26pid%3DApi&f=1&ipt=a1e338eff9bc2feff7305153b9b81a3f22311761ba1ac03517703ec3fef35b09&ipo=images"
   },
   {
     "name": "Alan Kay",
     "email": "akay@techfriends.dev",
     "password": "password06",
     "instrument": [
-      "Graphical User Interface (GUI) Design",
-      "Jazz Guitar",
-      "Education"
+      "Graphical User Interface (GUI) Design"
     ],
-    "age": 23
+    "age": 23,
+    "bio": "i have never been outside",
+    "url": "https://variety.com/wp-content/uploads/2022/08/Jonah-Hill.jpg?w=1000"
   },
   {
     "name": "C.A.R. Hoare",
     "email": "choare@techfriends.dev",
     "password": "password07",
-    "instrument": ["Algorithms", "Quicksort", "Hoare Logic"],
-    "age": 23
+    "instrument": ["Algorithms"],
+    "age": 23,
+    "bio": "what is musci",
+    "url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.XqO6cETFqVBVcTHoDrdybAHaIs%26pid%3DApi&f=1&ipt=d793c80f61c6f1abecc6c86b423ca757e098fee267e71da76166ab2ac065fe70&ipo=images"
   },
   {
     "name": "David Thomas",
     "email": "dthomas@techfriends.dev",
     "password": "password08",
-    "instrument": ["Author", "Code Kata", "Ruby", "Pragmatic Programming"],
-    "age": 23
-  },
-  {
-    "name": "Donald Knuth",
-    "email": "dknuth@techfriends.dev",
-    "password": "password09",
-    "instrument": ["TeX Computer Typesetting", "Algorithms", "Author"],
-    "age": 23
-  },
-  {
-    "name": "Lernantino",
-    "email": "lernantino@techfriends.dev",
-    "password": "password10",
-    "instrument": [
-      "JavaScript",
-      "CSS",
-      "HTML",
-      "Design Systems",
-      "Typescript",
-      "PWAs"
-    ],
-    "age": 23 
+    "instrument": ["Author"],
+    "age": 23,
+    "bio": "who? where?",
+    "url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP._hPqfkyps9YTVexRCAqGVQHaEn%26pid%3DApi&f=1&ipt=cf982c1204bb7f3521037019474e683f46f1a8639553a7886d53d20a870c82ef&ipo=images"
   }
 ]
 
