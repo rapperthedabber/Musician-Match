@@ -6,8 +6,9 @@ export const QUERY_PROFILES = gql`
       _id
       name
       instrument
-      image
+      url
       age
+      bio
     }
   }
 `;
@@ -18,7 +19,7 @@ export const QUERY_SINGLE_PROFILE = gql`
       _id
       name
       instrument
-      image
+      url
     }
   }
 `;
@@ -29,7 +30,7 @@ export const QUERY_ME = gql`
       _id
       name
       instrument
-      image
+      url
     }
   }
 `;

@@ -6,7 +6,6 @@ import { useMutation } from '@apollo/client';
 // import { makeStyles } from '@material-ui/core';
 
 import { ADD_ABOUT } from '../../utils/mutations';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
@@ -20,12 +19,8 @@ const InstrumentForm = ({ profileId }) => {
   const [formState, setFormState] = useState({
     instrument: '',
     age: '',
-<<<<<<< HEAD
-    image: ''
-=======
     url: '',
     bio: ''
->>>>>>> 993e2042d8418609455baaad11503f96c2bc5451
   });
 
   const [addAbout, { data, error }] = useMutation(ADD_ABOUT);
@@ -44,8 +39,8 @@ const InstrumentForm = ({ profileId }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     // const link = event.target[0].files[0]
-    // const imageLink = URL.createObjectURL(link)
-    // // const image = formState.image
+    // const urlLink = URL.createObjectURL(link)
+    // // const url = formState.url
     // const fileReader = new FileReader()
     // fileReader.onload = function() {
     //   // console.log(fileReader.result)
@@ -56,17 +51,10 @@ const InstrumentForm = ({ profileId }) => {
     // fileReader.readAsDataURL(link)
     // console.log(finalImg)
     try {
-<<<<<<< HEAD
       const { data }= await addAbout({
-        variables: { image: formState.image, instrument: formState.instrument, age: +formState.age, profileId: Auth.getProfile().data._id }, //could def be wrong
+        variables: { url: formState.url, instrument: formState.instrument, age: +formState.age, profileId: Auth.getProfile().data._id }, //could def be wrong
       });
     
-=======
-      const { data } = await addAbout({
-        variables: { instrument: formState.instrument, age: +formState.age, profileId: Auth.getProfile().data._id }, //could def be wrong
-      });
-
->>>>>>> 993e2042d8418609455baaad11503f96c2bc5451
     } catch (err) {
       console.error(err);
     }
@@ -104,7 +92,7 @@ const InstrumentForm = ({ profileId }) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       if (!url) {
-        alert('Please select an image')
+        alert('Please select an url')
       } else {
         fileReader.readAsDataURL(url);
         fileReader.onload = () => {
@@ -119,24 +107,8 @@ const InstrumentForm = ({ profileId }) => {
   }
 
   console.log(formState)
-<<<<<<< HEAD
-
-  function whatever(event) {
-    event.preventDefault()
-    const link = event.target[0].files[0]
-    const imageLink = URL.createObjectURL(link)
-    console.dir(imageLink)
-    // const image = formState.image
-    const fileReader = new FileReader()
-    fileReader.onload = function() {
-      console.log(fileReader.result)
-    } 
-    fileReader.readAsDataURL(link)
-  }
-=======
   let Navigate = useNavigate()
 
->>>>>>> 993e2042d8418609455baaad11503f96c2bc5451
   return (
 
     <div >
@@ -144,35 +116,15 @@ const InstrumentForm = ({ profileId }) => {
       <h4>Create User Profile </h4>
       {Auth.loggedIn() ? (
         <form onSubmit={handleFormSubmit} >
-<<<<<<< HEAD
-          <span id='span'>Link to a picture of yourself</span>
-          <input 
-            className="form-input" 
-            type="url" 
-            id="uploadImage" 
-            name="image" 
-            value={formState.image}
-            onChange={handleChange}
-            // onChange={(event) => {
-              // setFormState({ image: URL.createObjectURL(event.target.files[0])})
-         />
-            
-          <input type=""></input>
-          <span className={'flex space-x-4 '}> what instrument do you play?</span>
-          <select name="instrument" id="instrumentId" value={formState.instrument}
-            onChange={handleChange} >
-            <option value="null">Choose instrument</option>
-=======
           <span id='span' htmlFor = 'url' className={' flex '}>Upload a picture of yourself: </span>
           {/* <input className={'m-2'} type="file" id="myFile" name="filename" onChange={handleCreateBase64} /> */}
-          <input id = 'imageLink'type='url' name ='url' onChange={handleChange
+          <input id = 'urlLink'type='url' name ='url' onChange={handleChange
           } ></input>
-         {formState.url && <img src = {formState.url} id ='previewImage'alt ='no Photo'/>}
+         {formState.url && <img src = {formState.url} id ='previewurl'alt ='no Photo'/>}
           <span className={'flex space-x-4 mt-5 font-mono'}> what instrument do you play?</span>
           <select name="instrument" id="instrumentId" value={formState.instrument}
             onChange={handleChange} required>
             <option value='option' >---Choose instrument---</option>
->>>>>>> 993e2042d8418609455baaad11503f96c2bc5451
             <option value="Guitar">Guitar </option>
             <option value="Bass">Bass</option>
             <option value="Drummer">Drummer</option>

@@ -26,13 +26,16 @@ const profileSchema = new Schema({
   age: {
     type: Number,
   },
-  image: {
+  url: {
     type: String,
     trim: true,
   },
   likedProfiles: [{
     type: String,
-  }]
+  }],
+  bio: {
+    type: String,
+  }
 });
 
 // set up pre-save middleware to create password

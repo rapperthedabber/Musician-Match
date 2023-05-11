@@ -76,7 +76,7 @@ return(
     
     >
         <div 
-         style = {{backgroundImage: `url(${people.url})`}}
+         style = {{backgroundImage: `url(${person.url ? person.url : placeholder})`}}
         className='card'>
    <h1 id = "name">{person.name}</h1>
    <h4 id ="instrument">{person.instrument}</h4>
