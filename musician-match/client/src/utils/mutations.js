@@ -13,11 +13,13 @@ export const ADD_PROFILE = gql`
 `;
 
 export const ADD_ABOUT = gql`
-  mutation addAbout($profileId: ID!, $instrument: String!, $age: Int!, $url: String!) {
-    addAbout(profileId: $profileId, instrument: $instrument, age: $age, url: $url) {
+  mutation addAbout($profileId: ID!, $instrument: String!, $age: Int!, $url: String!, $bio: String!) {
+    addAbout(profileId: $profileId, instrument: $instrument, age: $age, url: $url, bio: $bio) {
         _id
         instrument
         age
+        url
+        bio
 
     }
   }
