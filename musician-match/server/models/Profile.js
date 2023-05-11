@@ -35,7 +35,10 @@ const profileSchema = new Schema({
   }],
   bio: {
     type: String,
-  }
+  },
+  matches: [{
+    type: String,
+  }]
 });
 
 // set up pre-save middleware to create password

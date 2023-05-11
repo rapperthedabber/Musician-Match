@@ -158,7 +158,7 @@ const InstrumentForm = ({ profileId }) => {
             className="btn btn-block btn-info"
             style={{ cursor: 'pointer' }}
             type="submit"
-            // onClick={renderCard}
+            onClick={handleFormSubmit}
             // onClick={() => !formState.instrument && !formState.age && !formState.bio ? (
             //   alert('please fill out instrument and age')) :
             //   (
