@@ -15,7 +15,7 @@ import Login from './pages/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import TinderCards from './components/TinderCards'
-import Chat from './components/Chat'
+import Chat from './pages/Chat'
 import ChatScreen from './components/ChatScreen'
 
 const httpLink = createHttpLink({

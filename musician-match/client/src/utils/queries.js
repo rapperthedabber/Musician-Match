@@ -34,3 +34,14 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_PROFILE_CHATROOMS = gql`
+  query profileChatRooms($profileId: ID!) {
+    chatRoomsByProfileId(profileId: $profileId) {
+      _id
+      initiatorId
+      receiverId
+      lastMessage
+    }
+  }
+`;

@@ -41,8 +41,9 @@ const resolvers = {
             { receiverId:  profileId }
         ]
       }).sort([['updatedAt', -1]]);
-    },
 
+      return chatRooms;
+    },
   },
 
   Mutation: {

@@ -31,6 +31,11 @@ app.get('/', (req, res) => {
 const startApolloServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
+  const io = require("socket.io")(server, {
+    cors: {
+      origin: "http://localhost:8080",
+    },
+  });
   
   db.once('open', () => {
     app.listen(PORT, () => {
