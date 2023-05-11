@@ -20,7 +20,6 @@ export const ADD_ABOUT = gql`
         age
         url
         bio
-
     }
   }
 `;
@@ -38,11 +37,19 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_LIKE = gql`
-  mutation likeProfile($profileId: ID!, $likedProfileId: ID!) {
-    likeProfile(profileId: $profileId, likedProfileId: $likedProfileId) {
-     _id
-    }
+mutation likeProfile($profileId: ID!, $likedProfileId: ID!) {
+  likeProfile(profileId: $profileId, likedProfileId: $likedProfileId) {
+    _id
   }
+}
+`;
+
+export const ADD_MATCH = gql`
+ mutation match($profileId: ID!, $matchedProfileId: ID!) {
+  match(profileId: $profileId, matchedProfileId: $matchedProfileId) {
+    _id
+  }
+}
 `;
 
 export const REMOVE_INSTRUMENT = gql`

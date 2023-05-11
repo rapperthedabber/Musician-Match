@@ -81,26 +81,20 @@ const resolvers = {
           new: true,
           runValidators: true,
         }
+        )
+      },
+      
+      match: async (parent, { profileId, matchedProfileId }, context) => {
+        return Profile.findOneAndUpdate(
+        { _id: profileId },
+        { $addToSet: {matches: matchedProfileId} },
+        {
+          new: true,
+          runValidators: true,
+        }
       )
     },
-    // Add a third argument to the resolver to access data in our `context`
-    addSkill: async (parent, { profileId, skill }, context) => {
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: profileId },
-          {
-            $addToSet: { skills: skill },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      // throw new AuthenticationError('You need to be logged in!');
-    },
+
 
     addAbout: async (parent, { profileId, instrument, age, url, bio }, context) => {
       // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in

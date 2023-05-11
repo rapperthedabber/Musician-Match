@@ -8,14 +8,15 @@ import placeholder from '../../assets/placeholder.png'
 import Auth from '../../utils/auth'
 
 import { QUERY_PROFILES, QUERY_ME } from '../../utils/queries'
-import { ADD_LIKE } from '../../utils/mutations';
+import { ADD_LIKE, ADD_MATCH } from '../../utils/mutations';
 
 
 export default function TinderCards() {
     const { data: data1 } = useQuery(QUERY_PROFILES);
     const { data: data2 } = useQuery(QUERY_ME)
     const people = data1?.profiles || [];
-    const [likeProfile] = useMutation(ADD_LIKE) 
+    const [likeProfile] = useMutation(ADD_LIKE)
+    const [match] = useMutation(ADD_MATCH) 
     const myId = data2?.me._id
     console.log(myId, "myId")
 
@@ -43,6 +44,9 @@ const onCardLeftScreen = (myIdentifier, theirLikes) => {
   if (theirLikes.includes(Auth.getProfile().data._id)) {
     console.log('Match worked')
     alert("You Matched!")
+    return match({
+      variables: { profileId: Auth.getProfile().data._id, matchedProfileId: myIdentifier }
+    })
   }
       return likeProfile({
         variables: { profileId: Auth.getProfile().data._id, likedProfileId: myIdentifier }
