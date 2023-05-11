@@ -21,7 +21,7 @@ db.once('open', async () => {
       });
     }
 
-    chatRooms = await ChatRoom.create(chatRooms);
+    chatRooms = await ChatRoom.insertMany(chatRooms);
     console.log(chatRooms[0]._id);
 
     // add 4 messages to the 3 chat rooms
