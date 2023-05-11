@@ -19,7 +19,9 @@ const InstrumentForm = ({ profileId }) => {
 
   const [formState, setFormState] = useState({
     instrument: '',
-    age: ''
+    age: '',
+    url: '',
+    bio: ''
   });
 
   const [addAbout, { data, error }] = useMutation(ADD_ABOUT);
@@ -76,13 +78,13 @@ const InstrumentForm = ({ profileId }) => {
     }, [])
 
 
-  const convertToBase64 = (file) => {
+  const convertToBase64 = (url) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
-      if (!file) {
+      if (!url) {
         alert('Please select an image')
       } else {
-        fileReader.readAsDataURL(file);
+        fileReader.readAsDataURL(url);
         fileReader.onload = () => {
           resolve(fileReader.result)
         }
@@ -104,10 +106,11 @@ const InstrumentForm = ({ profileId }) => {
       <h4>Create User Profile </h4>
       {Auth.loggedIn() ? (
         <form onSubmit={handleFormSubmit} >
-          <span id='span' className={' flex '}>Upload a picture of yourself: </span>
+          <span id='span' htmlFor = 'url' className={' flex '}>Upload a picture of yourself: </span>
           {/* <input className={'m-2'} type="file" id="myFile" name="filename" onChange={handleCreateBase64} /> */}
-          <input onChange={handleCreateBase64}></input>
-          <img id="previewImage" alt='No Photo' src={preview} />
+          <input id = 'imageLink'type='url' name ='url' onChange={handleChange
+          } ></input>
+         {formState.url && <img src = {formState.url} id ='previewImage'alt ='no Photo'/>}
           <span className={'flex space-x-4 mt-5 font-mono'}> what instrument do you play?</span>
           <select name="instrument" id="instrumentId" value={formState.instrument}
             onChange={handleChange} required>
@@ -128,13 +131,16 @@ const InstrumentForm = ({ profileId }) => {
 
             required />
 
+            <label>Tell everyone about you!</label>
+            <input id= 'bio' placeholder='ex. I love Music Match!'></input>
+
 
           <button
             className="btn btn-block btn-info"
             style={{ cursor: 'pointer' }}
             type="submit"
             // onClick={renderCard}
-            onClick={() => !formState.instrument && !formState.age ? (
+            onClick={() => !formState.instrument && !formState.age && !formState.bio ? (
               alert('please fill out instrument and age')) :
               (
                 Navigate('/')
