@@ -9,6 +9,7 @@ export const QUERY_PROFILES = gql`
       url
       age
       bio
+      likedProfiles
     }
   }
 `;
