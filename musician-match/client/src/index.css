@@ -1969,12 +1969,11 @@ align-items: center;
   padding: 15px;
 }
 
-#sendMessage{
+#newMessage{
   display: flex;
   flex: auto;
   padding: 15px;
-  float: right;
-  width: 1120px;
+  width:-webkit-fill-available;
   background-color: lightgray;
   margin: 10px;
   margin-right: 5px;
@@ -1985,8 +1984,7 @@ align-items: center;
     display: flex;
     flex: auto;
     padding: 15px;
-    float: right;
-    width: 410px;
+    width: -webkit-fill-available;
     background-color: lightgray;
     margin: 10px;
   
