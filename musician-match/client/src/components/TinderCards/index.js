@@ -76,10 +76,11 @@ return(
     
     >
         <div 
-        style = {{backgroundImage: `url(${person.image ? person.image : placeholder})`}}
-        className='card'
-        >
-   <h1 id="name">{person.name}</h1>
+         style = {{backgroundImage: `url(${people.url})`}}
+        className='card'>
+   <h1 id = "name">{person.name}</h1>
+   <h4 id ="instrument">{person.instrument}</h4>
+   <h5 id ="tinderBio">{person.bio}</h5>
    </div>
    </TinderCard>
    

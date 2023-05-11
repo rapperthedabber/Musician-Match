@@ -5,12 +5,12 @@ export default function ChatScreen(){
     const [message, setMessage] = useState([
         {
             name: 'Mick Jagger',
-            image:"",
+            image:"https://www.gannett-cdn.com/presto/2021/08/12/PMCA/371d3991-9f87-4267-b38e-c472f6c9316c-Elvis_60s_08.JPG?widt",
             message: "What's up"
         },
         {
             name: "Mick Jagger",
-            image: '',
+            image: 'https://www.gannett-cdn.com/presto/2021/08/12/PMCA/371d3991-9f87-4267-b38e-c472f6c9316c-Elvis_60s_08.JPG?widt',
             message: 'Yo, howdy!'
 
         }, 
