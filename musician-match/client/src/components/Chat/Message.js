@@ -13,7 +13,6 @@ const Message = ( {message, profile} ) => {
 
     const senderProfile = data?.profile;
     const isMyMessage = profile._id === message.senderId;
-    console.log(isMyMessage)
 
     return (
         <div>

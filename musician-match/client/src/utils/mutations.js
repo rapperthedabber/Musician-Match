@@ -52,3 +52,25 @@ export const REMOVE_INSTRUMENT = gql`
     }
   }
 `;
+
+export const SEND_NEW_MESSAGE = gql`
+  mutation sendNewMessage($chatRoomId: ID!, $senderId: ID!, $message: String!) {
+    createChatMessage(chatRoomId: $chatRoomId, senderId: $senderId, message: $message) {
+      _id
+      chatRoomId
+      senderId
+      message
+    }
+  }
+`;
+
+export const UPDATE_CHAT_ROOM = gql`
+  mutation updateChatRoom($chatRoomId: ID!, $lastMessage: String!) {
+    updateChatRoom(chatRoomId: $chatRoomId, lastMessage: $lastMessage) {
+      _id
+      initiatorId
+      receiverId
+      lastMessage
+    }
+  }
+`;

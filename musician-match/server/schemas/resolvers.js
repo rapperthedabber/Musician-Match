@@ -147,7 +147,7 @@ const resolvers = {
             throw new UserInputError('The Chat Room does not exist');
         }
         // Going to assume all chat rooms are two people only
-        if (existingChatRoom.senderId != context.user._id || existingChatRoom.receiverId != context.user._id) {
+        if (existingChatRoom.initiatorId != senderId && existingChatRoom.receiverId != senderId) {
           throw new AuthenticationError('You are attempting to message to a chat room you are not apart of!');
         }
 
