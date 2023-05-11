@@ -25,6 +25,16 @@ const profileSchema = new Schema({
   }],
   age: {
     type: Number,
+  },
+  url: {
+    type: String,
+    trim: true,
+  },
+  likedProfiles: [{
+    type: String,
+  }],
+  bio: {
+    type: String,
   }
 });
 

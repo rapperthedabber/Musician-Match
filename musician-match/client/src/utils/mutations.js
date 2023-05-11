@@ -13,8 +13,8 @@ export const ADD_PROFILE = gql`
 `;
 
 export const ADD_ABOUT = gql`
-  mutation addAbout($profileId: ID!, $instrument: String!, $age: Int!) {
-    addAbout(profileId: $profileId, instrument: $instrument, age: $age) {
+  mutation addAbout($profileId: ID!, $instrument: String!, $age: Int!, $url: String!) {
+    addAbout(profileId: $profileId, instrument: $instrument, age: $age, url: $url) {
         _id
         instrument
         age
@@ -31,6 +31,14 @@ export const LOGIN_USER = gql`
         _id
         name
       }
+    }
+  }
+`;
+
+export const ADD_LIKE = gql`
+  mutation likeProfile($profileId: ID!, $likedProfileId: ID!) {
+    likeProfile(profileId: $profileId, likedProfileId: $likedProfileId) {
+     _id
     }
   }
 `;

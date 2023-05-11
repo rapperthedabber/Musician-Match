@@ -1084,6 +1084,7 @@ a:hover {
   width: 100%;
   display: block;
   text-align: center;
+
 }
 
 .btn.btn-primary {
@@ -1795,6 +1796,8 @@ label form [type='radio'] {
   background-position: center;
 
 }
+
+
 #name{
   color:white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -1805,6 +1808,35 @@ label form [type='radio'] {
   font-family: monospace;
   width: 120px;
 }
+
+#tinderBio{
+  color: black;
+  width: 500px;
+  border-radius: 20px;
+  height: 90px;
+  margin-top: 300px;
+  border: solid;
+  background-color: pink;
+  box-shadow: #000000;
+  
+}
+@media only screen and (max-width: 600px) {
+  
+#tinderBio{
+  color: black;
+  width: 400px;
+  border-radius: 20px;
+  height: 90px;
+  margin-top: 300px;
+  border: solid;
+  background-color: pink;
+  
+}
+
+}
+
+
+
 .tinderContainer{
   display: flex;
   justify-content: center;
@@ -1832,11 +1864,11 @@ label form [type='radio'] {
 }
 
 .footer {
-  margin-top: 200px;
+  margin-top: 500px;
 }
 @media only screen and (max-width: 600px) {
   .footer {
-    margin-top:200px
+    margin-top:300px
   }
 }
 
@@ -1994,3 +2026,35 @@ font-family: monospace;
   #instrumentId{
     width: 200px;
   }
+
+  #imageLink{
+    border: solid;
+    border-radius: 20px;
+    padding: 10px;
+    width: 200px;
+  }
+
+#bio{
+  border-radius:4px;
+  border: solid;
+  font-size:16px;
+  padding:15px;
+  margin:5px;
+  justify-self: auto;
+  display: flex;
+  width: 500px;
+}
+
+@media only screen and (max-width: 600px) {
+  #bio{
+    border-radius:4px;
+    border: solid;
+    font-size:16px;
+    padding:15px;
+    margin:5px;
+    justify-self: auto;
+    display: flex;
+    width: 360px;
+  }
+    
+    }
