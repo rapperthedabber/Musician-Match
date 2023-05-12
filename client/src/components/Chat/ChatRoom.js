@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery, useSubscription ,useMutation } from '@apollo/client'
 import { QUERY_MESSAGES_BY_CHATROOM, QUERY_ME } from '../../utils/queries';
 import { SEND_NEW_MESSAGE, UPDATE_CHAT_ROOM } from '../../utils/mutations';
 import Message from './Message';
@@ -9,17 +9,17 @@ import Message from './Message';
 
 const ChatRoom = () => {
     const { chatRoomId } = useParams();
-    const messagesQuery = useQuery(QUERY_MESSAGES_BY_CHATROOM, { variables: { chatRoomId: chatRoomId } });
+    const messagesSubscription = useSubscription(QUERY_MESSAGES_BY_CHATROOM, { variables: { chatRoomId: chatRoomId } });
     const meQuery = useQuery(QUERY_ME);
     const [sendNewMessage, { messageData, messageError }] = useMutation(SEND_NEW_MESSAGE);
     const [updateChatRoom, { roomData, roomError }] = useMutation(UPDATE_CHAT_ROOM);
 
 
-    if (messagesQuery.loading || meQuery.loading) {
+    if (messagesSubscription.loading || meQuery.loading) {
         return <div>Loading...</div>;
     }
 
-    const messages = messagesQuery.data?.chatMessagesByChatRoomId;
+    const messages = messagesSubscription.data?.chatMessagesByChatRoomId;
     const profile = meQuery.data?.me;
 
     const handleSubmit = async (e) => {
@@ -52,6 +52,7 @@ const ChatRoom = () => {
             <h1>Chat Room</h1>
             {messages.map((message) => {
                 return <Message
+                    key={message._id}
                     message={message}
                     profile={profile}
                 />

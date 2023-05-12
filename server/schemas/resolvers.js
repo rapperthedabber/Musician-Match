@@ -25,9 +25,6 @@ const resolvers = {
     chatMessage: async (parent, { chatMessageId }) => {
       return ChatMessage.findOne({ _id: chatMessageId });
     },
-    chatMessagesByChatRoomId: async (parent, { chatRoomId }) => {
-      return ChatMessage.find({ chatRoomId: chatRoomId }).sort([['createdAt', 1]]);
-    },
     chatRooms: async () => {
       return ChatRoom.find();
     },
@@ -234,6 +231,12 @@ const resolvers = {
         return chatRoom;
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+  },
+
+  Subscription: {
+    chatMessagesByChatRoomId: async (parent, { chatRoomId }) => {
+      return ChatMessage.find({ chatRoomId: chatRoomId }).sort([['createdAt', 1]]);
     },
   },
 };

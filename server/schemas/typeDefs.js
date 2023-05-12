@@ -68,6 +68,10 @@ const typeDefs = gql`
     updateChatRoom(chatRoomId: ID!, lastMessage: String!): ChatRoom
     deleteChatRoom(chatRoomId: ID!): ChatRoom
   }
-  `;
+
+  type Subscription {
+    chatMessagesByChatRoomId(chatRoomId: ID!): [ChatMessage]
+  }
+`;
   
 module.exports = typeDefs;
