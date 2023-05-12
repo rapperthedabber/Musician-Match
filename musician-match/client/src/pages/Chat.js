@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_ME, QUERY_PROFILE_CHATROOMS } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import ChatRooms from '../components/Chat/ChatRooms';
 
