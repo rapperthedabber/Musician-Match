@@ -6,6 +6,7 @@ import { SEND_NEW_MESSAGE, UPDATE_CHAT_ROOM } from '../../utils/mutations';
 import Message from './Message';
 
 
+
 const ChatRoom = () => {
     const { chatRoomId } = useParams();
     const messagesQuery = useQuery(QUERY_MESSAGES_BY_CHATROOM, { variables: { chatRoomId: chatRoomId } });
@@ -58,7 +59,8 @@ const ChatRoom = () => {
             <div>
             <form onSubmit={handleSubmit} >
                 <input id="newMessage" placeholder="message" name="newMessage" type="string" />
-                <button className="btn btn-block btn-info" style={{ cursor: 'pointer' }} type="submit" >
+                <button className="btn btn-block btn-info" style={{ cursor: 'pointer' }} type="submit"
+                 >
                     SEND
                 </button>
             </form>
