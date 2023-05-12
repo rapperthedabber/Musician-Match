@@ -26,16 +26,13 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+const http = require('http').Server(app);
+const cors = require('cors');
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
-  const io = require("socket.io")(server, {
-    cors: {
-      origin: "http://localhost:8080",
-    },
-  });
   
   db.once('open', () => {
     app.listen(PORT, () => {
