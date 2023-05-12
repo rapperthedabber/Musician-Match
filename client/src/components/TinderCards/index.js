@@ -14,95 +14,85 @@ import { ADD_LIKE, ADD_MATCH } from '../../utils/mutations';
 
 
 export default function TinderCards() {
-    const { data: data1 } = useQuery(QUERY_PROFILES);
-    const { data: data2 } = useQuery(QUERY_ME)
-    const people = data1?.profiles || [];
-
-    const [likeProfile] = useMutation(ADD_LIKE)
-    const [match] = useMutation(ADD_MATCH) 
-
-   
+  const { data: data1 } = useQuery(QUERY_PROFILES);
+  const { data: data2 } = useQuery(QUERY_ME)
+  const people = data1?.profiles || [];
+  console.log(people)
+  const [likeProfile] = useMutation(ADD_LIKE)
+  const [match] = useMutation(ADD_MATCH)
 
 
-// const onSwipe = (direction) => {
-//     console.log(direction)
-//     if (direction === 'right') {
-//       console.log('hey', direction)
-//       const { data } = likeProfile({
-//         variables: { profileId: Auth.getProfile().data._id, likedProfileId: TinderCard.value }
-//       })
-//     }
-//     if (direction === 'left') {
-//       console.log('goodbye', direction)
-//     }
-//   }
-const onSwipe = (direction) => {
-  console.log('You swiped: ' + direction)
-  return direction
+
+
+  // const onSwipe = (direction) => {
+  //     console.log(direction)
+  //     if (direction === 'right') {
+  //       console.log('hey', direction)
+  //       const { data } = likeProfile({
+  //         variables: { profileId: Auth.getProfile().data._id, likedProfileId: TinderCard.value }
+  //       })
+  //     }
+  //     if (direction === 'left') {
+  //       console.log('goodbye', direction)
+  //     }
+  //   }
+  const onSwipe = (direction) => {
+    console.log('You swiped: ' + direction)
+    return direction
+  }
+
+  const onSwipeLeft = () => {
+    console.log('left')
+  }
+
+  const onSwipeRight = (myIdentifier, theirLikes) => {
+    console.log('right')
+    console.log(myIdentifier, theirLikes)
+    if (theirLikes.includes(Auth.getProfile().data._id)) {
+      console.log('Match worked')
+      alert("You Matched!")
+
+      return match({
+        variables: { profileId: Auth.getProfile().data._id, matchedProfileId: myIdentifier }
+      })
+
+    }
+  return likeProfile({
+    variables: { profileId: Auth.getProfile().data._id, likedProfileId: myIdentifier }
+  })
 }
 
-const onCardLeftScreen = (myIdentifier, theirLikes) => {
-  console.log(myIdentifier + ' left the screen', theirLikes)
-  if (theirLikes.includes(Auth.getProfile().data._id)) {
-    console.log('Match worked')
-    alert("You Matched!")
-
-    return match({
-      variables: { profileId: Auth.getProfile().data._id, matchedProfileId: myIdentifier }
-    })
-
+  const onCardLeftScreen = (myIdentifier, theirLikes) => {
+    console.log(myIdentifier + ' left the screen')
   }
-      return likeProfile({
-        variables: { profileId: Auth.getProfile().data._id, likedProfileId: myIdentifier }
-      })
-    }
-return(
-    
-<div>
-    <h1>Music Cards</h1>
-    <div className='tinderContainer'>
-  {people.map((person) => (
-    
-        <TinderCard
-    className='swipe'
-    key={person._id}
-    value={person._id}
-    onSwipe={onSwipe}
-    onCardLeftScreen={() => onCardLeftScreen(person._id, person.likedProfiles)}
-    preventSwipe={['up', 'down']}
-    
-    >
-        <div 
-         style = {{backgroundImage: `url(${person.url ? person.url : placeholder})`}}
-        className='card'>
-   <h1 id = "name">{person.name}</h1>
-   <h4 id ="instrument">{person.instrument}</h4>
-   <h5 id ="tinderBio">{person.bio}</h5>
-   </div>
-   </TinderCard>
-   
-  ))}
-  </div>
-</div>
-)
-  }
-// import TinderCard from 'react-tinder-card'
 
+  return (
 
+    <div>
+      <h1>Music Cards</h1>
+      <div className='tinderContainer'>
+        {people.map((person) => (
 
-// export default function TinderCards() {
-// const onSwipe = (direction) => {
-    
-//   console.log('You swiped: ' + direction)
-// }
+          <TinderCard
+            className='swipe'
+            key={person._id}
+            value={person._id}
+            onSwipe={(direction) => direction === 'left' ? onSwipeLeft() : onSwipeRight(person._id, person.likedProfiles)}
+            onCardLeftScreen={() => onCardLeftScreen(person._id, person.likedProfiles)}
+            preventSwipe={['up', 'down']}
 
-// const onCardLeftScreen = (myIdentifier) => {
-//   console.log(myIdentifier + ' left the screen')
-// }
+          >
+            <div
+              style={{ backgroundImage: `url(${person.url ? person.url : placeholder})` }}
+              className='card'>
+              <h1 id="name">{person.name}</h1>
+              <h4 id="instrument">{person.instrument}</h4>
+              <h5 id="tinderBio">{person.bio}</h5>
+            </div>
+          </TinderCard>
 
-// return (
-//   <TinderCard onSwipe={onSwipe} onCardLeftScreen={() => onCardLeftScreen('fooBar')} preventSwipe={['right', 'left']}>Hello, World!</TinderCard>
-// )
-
-// }
-// }
+        ))}
+      </div>
+    </div>
+  )
+}
