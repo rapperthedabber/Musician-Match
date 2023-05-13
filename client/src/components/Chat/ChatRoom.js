@@ -1,4 +1,4 @@
-import React from 'react'
+import React,  { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client'
 import { QUERY_MESSAGES_BY_CHATROOM, QUERY_ME } from '../../utils/queries';
@@ -8,6 +8,8 @@ import Message from './Message';
 
 
 const ChatRoom = () => {
+    const [msg, setmsgState] = useState([]);
+    console.log(msg)
     const { chatRoomId } = useParams();
     const messagesQuery = useQuery(QUERY_MESSAGES_BY_CHATROOM, { variables: { chatRoomId: chatRoomId } });
     const meQuery = useQuery(QUERY_ME);
@@ -41,16 +43,22 @@ const ChatRoom = () => {
                }
               },
             });
-          
+            //window.location.reload(true);
+            const original = msg.length != 0 ? msg : messages;
+            setmsgState([
+                ...original,
+                data?.createChatMessage
+            ])
           } catch (err) {
             console.error(err);
           }
     };
 
+    const m = msg.length != 0 ? msg : messages;
     return (
         <div>
             <h1>Chat Room</h1>
-            {messages.map((message) => {
+            {m.map((message) => {
                 return <Message
                     message={message}
                     profile={profile}
