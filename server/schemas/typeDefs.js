@@ -70,7 +70,7 @@ const typeDefs = gql`
   }
 
   type Subscription {
-    chatMessagesByChatRoomId(chatRoomId: ID!): [ChatMessage]
+    newMessage(chatRoomId: ID!): ChatMessage
   }
 `;
   

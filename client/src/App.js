@@ -4,8 +4,14 @@ import {
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
+  ApolloLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { WebSocketLink } from "@apollo/client/link/ws";
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { createClient } from "graphql-ws";
+import { concat } from 'apollo-link';
+import { SubscriptionClient } from "subscriptions-transport-ws";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
@@ -17,9 +23,10 @@ import Footer from './components/Footer';
 import TinderCards from './components/TinderCards'
 import Chat from './pages/Chat'
 import ChatRoom from './components/Chat/ChatRoom'
+import auth from './utils/auth';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -34,8 +41,28 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+/* 
+const wsLink = new GraphQLWsLink(
+  createClient({
+    url: "ws://localhost:3001/graphql",
+    options: {
+      reconnect: true // Enable automatic reconnection in case of disconnection
+    },
+  }),
+); */
+
+const wsLink = () =>
+  new WebSocketLink(
+    new SubscriptionClient("ws://localhost:3001/graphql", {
+      reconnect: true,
+    })
+  );
+
+const terminatingLink = concat(authLink, httpLink, wsLink);
+
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  //link: authLink.concat(httpLink).concat(wsLink),
+  link: terminatingLink,
   cache: new InMemoryCache(),
 });
 

@@ -48,7 +48,7 @@ export const QUERY_PROFILE_CHATROOMS = gql`
 `;
 
 export const QUERY_MESSAGES_BY_CHATROOM = gql`
-  subscription messagesByChatRoom($chatRoomId: ID!) {
+  query messagesByChatRoom($chatRoomId: ID!) {
     chatMessagesByChatRoomId(chatRoomId: $chatRoomId) {
       _id
       chatRoomId

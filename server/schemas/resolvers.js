@@ -1,7 +1,16 @@
 const { AuthenticationError, UserInputError } = require('apollo-server-express');
+const { } = require('@apollo/server/errors');
+const { GraphQLError } = require('graphql');
 const { Profile, ChatMessage, ChatRoom } = require('../models');
 const { signToken } = require('../utils/auth');
 const { buildResolveInfo } = require('graphql/execution/execute');
+const pubsub = require('../utils/pubsub');
+
+const messages = []; //stores all the messages sent
+const subscribers = []; //stores any new messages sent upon listening
+
+//to push new users to the subscribers array
+const onMessagesUpdates = (fn) => subscribers.push(fn);
 
 const resolvers = {
   Query: {
@@ -13,7 +22,7 @@ const resolvers = {
       return Profile.findOne({ _id: profileId });
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
-    me: async (parent, args, context) => {
+    me: async (parent, args, context ) => {
       if (context.user) {
         return Profile.findOne({ _id: context.user._id });
       }
@@ -25,6 +34,9 @@ const resolvers = {
     chatMessage: async (parent, { chatMessageId }) => {
       return ChatMessage.findOne({ _id: chatMessageId });
     },
+    chatMessagesByChatRoomId: async (parent, { chatRoomId }) => {
+      return ChatMessage.find({ chatRoomId: chatRoomId }).sort([['createdAt', 1]]);
+    },
     chatRooms: async () => {
       return ChatRoom.find();
     },
@@ -32,10 +44,10 @@ const resolvers = {
       return ChatRoom.findOne({ _id: chatRoomId });
     },
     chatRoomsByProfileId: async (parent, { profileId }) => {
-      const chatRooms = await ChatRoom.find({ 
+      const chatRooms = await ChatRoom.find({
         $or: [
-            { initiatorId: profileId },
-            { receiverId:  profileId }
+          { initiatorId: profileId },
+          { receiverId: profileId }
         ]
       }).sort([['updatedAt', -1]]);
 
@@ -78,13 +90,13 @@ const resolvers = {
           new: true,
           runValidators: true,
         }
-        )
-      },
-      
-      match: async (parent, { profileId, matchedProfileId }, context) => {
-        return Profile.findOneAndUpdate(
+      )
+    },
+
+    match: async (parent, { profileId, matchedProfileId }, context) => {
+      return Profile.findOneAndUpdate(
         { _id: profileId },
-        { $addToSet: {matches: matchedProfileId} },
+        { $addToSet: { matches: matchedProfileId } },
         {
           new: true,
           runValidators: true,
@@ -131,11 +143,11 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    createChatMessage: async (parent, {chatRoomId, senderId, message}, context) => {
-     if (context.user) {
+    createChatMessage: async (parent, { chatRoomId, senderId, message }, context) => {
+      if (context.user) {
         let existingChatRoom = await ChatRoom.findOne({ _id: chatRoomId });
         if (!existingChatRoom) {
-            throw new UserInputError('The Chat Room does not exist');
+          throw new UserInputError('The Chat Room does not exist');
         }
         // Going to assume all chat rooms are two people only
         if (existingChatRoom.initiatorId != senderId && existingChatRoom.receiverId != senderId) {
@@ -147,22 +159,30 @@ const resolvers = {
           throw new UserInputError('The sender User Id does not exist');
         }
 
-        let chatMessage = await ChatMessage.create({chatRoomId, senderId, message});
+        let chatMessage = await ChatMessage.create({ chatRoomId, senderId, message });
+
+        let channel = `newMessage_${chatRoomId}`
+        console.log('send channel')
+        console.log(channel)
+        pubsub.publish(channel, {
+          newMessage: chatMessage
+      });
+
         return chatMessage;
-      
+
       }
       throw new AuthenticationError('You need to be logged in!');
     },
     deleteChatMessage: async (parent, { chatMessageId }, context) => {
       if (context.user) {
-        let chatMessage =  await ChatMessage.findOne({ _id: chatMessageId });
+        let chatMessage = await ChatMessage.findOne({ _id: chatMessageId });
         if (chatMessage.senderId != context.user._id) {
           throw new AuthenticationError('You are attempting to  delete a message that is not yours!');
         }
 
         let removedMessage = await ChatMessage.findOneAndRemove({ _id: chatMessageId });
         if (!removedMessage) {
-            throw new UserInputError('No Chat Message with this Id exists');
+          throw new UserInputError('No Chat Message with this Id exists');
         }
 
         return removedMessage;
@@ -186,22 +206,26 @@ const resolvers = {
         }
 
         let existingChatRoom = await ChatRoom.findOne({
-            $or: [
-                {$and: [
-                    { initiatorId: initiatorId },
-                    { receiverId:  receiverId }
-                ]},
-                {$and: [
-                    { initiatorId: receiverId },
-                    { receiverId:  initiatorId }
-                ]}
-            ]
+          $or: [
+            {
+              $and: [
+                { initiatorId: initiatorId },
+                { receiverId: receiverId }
+              ]
+            },
+            {
+              $and: [
+                { initiatorId: receiverId },
+                { receiverId: initiatorId }
+              ]
+            }
+          ]
         })
         if (existingChatRoom) {
           throw new UserInputError('This Chat Room already exists');
         }
 
-        let chatRoom = await ChatRoom.create({initiatorId, receiverId, lastMessage});
+        let chatRoom = await ChatRoom.create({ initiatorId, receiverId, lastMessage });
         return chatRoom;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -210,7 +234,7 @@ const resolvers = {
       if (context.user) {
         let chatRoom = await ChatRoom.findOneAndUpdate(
           { _id: chatRoomId },
-          { $set: {lastMessage: lastMessage} },
+          { $set: { lastMessage: lastMessage } },
           { runValidators: true, new: true }
         );
 
@@ -235,10 +259,15 @@ const resolvers = {
   },
 
   Subscription: {
-    chatMessagesByChatRoomId: async (parent, { chatRoomId }) => {
-      return ChatMessage.find({ chatRoomId: chatRoomId }).sort([['createdAt', 1]]);
+    newMessage: {
+      subscribe: (parent, { chatRoomId }, context) => {
+        let channel = `newMessage_${chatRoomId}`
+        console.log('recieve channel')
+        console.log(channel)
+        return pubsub.asyncIterator(channel);
+      },
     },
-  },
+  }
 };
 
 module.exports = resolvers;
