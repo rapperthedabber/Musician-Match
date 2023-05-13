@@ -2,6 +2,9 @@
   "name": "musician-match",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "18.x"
+  },
   "main": "server/server.js",
   "scripts": {
     "start": "craco start && postcss src/css/app.css -o public/app.css",
