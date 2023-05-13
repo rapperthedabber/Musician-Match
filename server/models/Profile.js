@@ -21,7 +21,6 @@ const profileSchema = new Schema({
   },
   instrument:[{
       type: String,
-      trim: true,
   }],
   age: {
     type: Number,

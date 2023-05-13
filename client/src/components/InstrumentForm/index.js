@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState, } from 'react';
 import { Link, Route, Router } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import axios from 'axios';
 // import { makeStyles } from '@material-ui/core';
 
 import { ADD_ABOUT } from '../../utils/mutations';
@@ -13,7 +12,7 @@ import Auth from '../../utils/auth';
 import TinderCard from 'react-tinder-card';
 import App from '../../App';
 import Home from '../../pages/Home';
-import TinderCards from '../TinderCards';
+// import TinderCards from '../TinderCards';
 
 const InstrumentForm = ({ profileId }) => {
 
@@ -126,10 +125,10 @@ const InstrumentForm = ({ profileId }) => {
           <select name="instrument" id="instrumentId" value={formState.instrument}
             onChange={handleChange} required>
             <option value='option' >---Choose instrument---</option>
-            <option value="Guitar">Guitar </option>
-            <option value="Bass">Bass</option>
-            <option value="Drummer">Drummer</option>
-            <option value='Vocalist'>Vocalist</option>
+            <option value="Guitar ">Guitar </option>
+            <option value="Bass ">Bass</option>
+            <option value="Drummer ">Drummer</option>
+            <option value='Vocalist '>Vocalist</option>
           </select>
           <input
             className="form-input"

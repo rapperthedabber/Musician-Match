@@ -1,4 +1,4 @@
-import TinderCard from "../TinderCards";
+// import TinderCard from "../TinderCards";
 import { useMutation, useQuery } from '@apollo/client';
 import { Link, Routes } from 'react-router-dom';
 
@@ -9,8 +9,6 @@ import { QUERY_PROFILES, QUERY_ME } from '../../utils/queries'
 
 import React, { useState } from 'react'
 
-
-import axios from "axios";
 import { ADD_LIKE, ADD_MATCH, CREATE_CHAT_ROOM } from '../../utils/mutations';
 
 

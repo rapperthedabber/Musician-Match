@@ -9,21 +9,17 @@ import Auth from '../../utils/auth'
 
 import { QUERY_PROFILES, QUERY_ME } from '../../utils/queries'
 
-import { ADD_LIKE, ADD_MATCH, CREATE_CHAT_ROOM } from '../../utils/mutations';
+import { ADD_LIKE, ADD_MATCH } from '../../utils/mutations';
 
 
 
 export default function TinderCards() {
-    const { data: data1 } = useQuery(QUERY_PROFILES);
-    const { data: data2 } = useQuery(QUERY_ME)
-    const people = data1?.profiles || [];
-  
-
-    const [likeProfile] = useMutation(ADD_LIKE)
-    const [match] = useMutation(ADD_MATCH)
-    const [createChatRoom] = useMutation(CREATE_CHAT_ROOM)
-
-
+  const { data: data1 } = useQuery(QUERY_PROFILES);
+  const { data: data2 } = useQuery(QUERY_ME)
+  const people = data1?.profiles || [];
+  console.log(people)
+  const [likeProfile] = useMutation(ADD_LIKE)
+  const [match] = useMutation(ADD_MATCH)
 
 
 
@@ -66,20 +62,8 @@ export default function TinderCards() {
   })
 }
 
-const onCardLeftScreen = (myIdentifier, theirLikes) => {
-  console.log(myIdentifier + ' left the screen', theirLikes)
-  if (theirLikes.includes(Auth.getProfile().data._id)) {
-    console.log('Match worked')
-    alert("You Matched!")
-
-    createChatRoom({
-      variables: {initiatorId: Auth.getProfile().data._id, receiverId: myIdentifier, lastMessage: "Time to start jamming"}
-    })
-    
-    return match({
-      variables: { profileId: Auth.getProfile().data._id, matchedProfileId: myIdentifier }
-    })
-
+  const onCardLeftScreen = (myIdentifier, theirLikes) => {
+    console.log(myIdentifier + ' left the screen')
   }
 
   return (
@@ -111,5 +95,4 @@ const onCardLeftScreen = (myIdentifier, theirLikes) => {
       </div>
     </div>
   )
-}
 }
