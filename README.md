@@ -1,28 +1,69 @@
-# Pass JWT to Resolver with Context (Server-side)
+# Musician Match
+    
+        
 
-In this demo, you will verify if a token is valid and carry
+<a name="description"></a>
+## Description  
+    
+We were motivated to make this project by the lack of a good app for musicians to meet eachother..<br>
+This app will prevent people from having to meet strangers off craigslist.<br>
+We learned about a variety of third party NPM's, as well as going more in depth with React.js, GraphQL, and Apollo Server..<br>
+    
+    
+## Table of Contents
+-[Description](#description)<br> 
+-[Installation](#installation)<br>
+-[Usage](#usage)<br>
+-[Contribution](#contribution)<br>
+-[Technologies](#technologies)<br>
+-[Tests](#tests)<br>
+-[Credits](#credits)<br>
+-[License](#license)<br>
 
-## Instructions
+<a name="installation"></a>
+## Installation
 
-* Run `npm install` and `npm run seed` to set up the database.
 
-* Open [server.js](server/server.js) and explain the following:
 
-  * We can add another option to our Apollo Server configuration called `context`, which is a lot like middleware in Express.
 
-  * This will allow us to intercept any request to the server and check if there's a valid JWT before the request gets to the resolver.
 
-* Open [auth.js](server/utils/auth.js) and explain the `authMiddleware` function:
 
-  * Whenever we make a request to our server, we will check if there's a token with the request and attempt to verify and decode it if there is.
 
-  * We use the `return` statement to return the `req` object, either modified with user data or not modified at all, and the request will continue to go to its intended resolver function.
+<a name="usage"></a>
+## Usage
 
-* Open [resolvers.js](server/schemas/resolvers.js) and explain the following:
+Simply sign up, fill out details on what kind of musician you are, and start swiping!
 
-  * Any time we need to implement authentication on a query or mutation, we can add a third parameter called `context` to the resolver function.
+<a name="contribution"></a>
+## How To Contribute
 
-  * The `context` object is whatever has been returned from our `authMiddleware` function, so it may or may not include a `user` property depending on the status of the JSON Web Token.
+Give us an A+.
 
-  * If there is a `user` property, we can assume the user's token has been verified and the `user` property now holds data about the user that we stored in the token itself.
+<a name="technologies"></a>
+## Technologies
 
+React.js, Apollo Servers, GraphQL, Mongoose, React-Tinder-Cards, Machine-UI-NPM, Node.js, NPM, Express.js.
+
+<a name="tests"></a>
+## Tests
+
+N/A
+
+<a name="credits"></a>
+## Credits 
+
+Eli Chase, Jerry Dong, My Tang, and  Mike Stem.
+
+<a name="license"></a>
+## License
+
+This application was made under the !!!ERASE THIS SECTION!!! license.
+
+## Questions
+
+Githubs:
+    Eli: https://github.com/eschase4
+    Jerry:
+    My:
+    Mike:
+My email address is eschase4@gmail.com, feel free to reach out for any questions you may have.
