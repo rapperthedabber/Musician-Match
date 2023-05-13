@@ -2073,3 +2073,35 @@ font-family: monospace;
   }
     
     }
+
+    #MeImage{
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+    }
+
+  #pictureBorder{
+    border: solid 2px gainsboro;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 20px;
+  }
+
+  #pictureBorder:hover{
+    border: solid 2px black;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 20px;
+  }
+
+  #seeProfiles{
+    background-color: white;
+    border-radius: 20px;
+    padding: 3px;
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+    margin: 10px;
+   display: inline-block;
+ 
+  }
