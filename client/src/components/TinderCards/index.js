@@ -17,12 +17,13 @@ export default function TinderCards() {
     const { data: data1 } = useQuery(QUERY_PROFILES);
     const { data: data2 } = useQuery(QUERY_ME)
     const people = data1?.profiles || [];
+  
 
     const [likeProfile] = useMutation(ADD_LIKE)
     const [match] = useMutation(ADD_MATCH)
     const [createChatRoom] = useMutation(CREATE_CHAT_ROOM)
 
-   
+
 
 
 // const onSwipe = (direction) => {
