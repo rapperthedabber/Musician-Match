@@ -1787,7 +1787,6 @@ label form [type='radio'] {
 
 .card{
   position: relative;
-  width: 600px;
   padding: 20px;
   max-width: 85vw;
   height: 500px;
@@ -1801,34 +1800,52 @@ label form [type='radio'] {
 #name{
   color:white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
+
 #instrument{
-  background-color: black;
   color: yellow;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   font-family: monospace;
   width: 120px;
+  display: flex;
+  width: 400px;
 }
 
 #tinderBio{
+  position: relative;
   color: black;
   width: 500px;
   border-radius: 20px;
   height: 90px;
-  margin-top: 300px;
+  margin-top: 250px;
   border: solid;
   background-color: pink;
   box-shadow: #000000;
   
 }
+
+@media only screen and (max-width:600px){
+  #instrument{
+    color: yellow;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-family: monospace;
+    width: 120px;
+    display: flex;
+    width: 300px;
+
+  }
+}
 @media only screen and (max-width: 600px) {
   
 #tinderBio{
   color: black;
-  width: 400px;
+  width: 300px;
   border-radius: 20px;
   height: 90px;
-  margin-top: 300px;
+  margin-top: 250px;
   border: solid;
+  display: flex;
   background-color: pink;
   
 }
@@ -2056,3 +2073,35 @@ font-family: monospace;
   }
     
     }
+
+    #MeImage{
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+    }
+
+  #pictureBorder{
+    border: solid 2px gainsboro;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 20px;
+  }
+
+  #pictureBorder:hover{
+    border: solid 2px black;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 20px;
+  }
+
+  #seeProfiles{
+    background-color: white;
+    border-radius: 20px;
+    padding: 3px;
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+    margin: 10px;
+   display: inline-block;
+ 
+  }

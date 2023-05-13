@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState, } from 'react';
 import { Link, Route, Router } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+import axios from 'axios';
 // import { makeStyles } from '@material-ui/core';
 
 import { ADD_ABOUT } from '../../utils/mutations';
@@ -154,19 +155,20 @@ const InstrumentForm = ({ profileId }) => {
              />
 
 
-          <button
-            className="btn btn-block btn-info"
+    <button
+            className="submit"
             style={{ cursor: 'pointer' }}
             type="submit"
-            onClick={handleFormSubmit}
-            // onClick={() => !formState.instrument && !formState.age && !formState.bio ? (
-            //   alert('please fill out instrument and age')) :
-            //   (
-            //     Navigate('/')
-            //     )}
-                >
+            onClick={handleFormSubmit}>
+            
+            <Link to= '/myCard' >
+       
             Submit
+            </Link>
+           
           </button>
+          
+          
 
 
 

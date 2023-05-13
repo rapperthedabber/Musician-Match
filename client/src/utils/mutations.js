@@ -83,3 +83,14 @@ export const UPDATE_CHAT_ROOM = gql`
     }
   }
 `;
+
+export const CREATE_CHAT_ROOM = gql`
+  mutation createChatRoom($initiatorId: ID!, $receiverId: ID!, $lastMessage: String!) {
+    createChatRoom(initiatorId: $initiatorId, receiverId: $receiverId,,lastMessage: $lastMessage) {
+      _id
+      initiatorId
+      receiverId
+      lastMessage
+    }
+  }
+`;

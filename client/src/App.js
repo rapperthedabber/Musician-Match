@@ -17,6 +17,7 @@ import Footer from './components/Footer';
 import TinderCards from './components/TinderCards'
 import Chat from './pages/Chat'
 import ChatRoom from './components/Chat/ChatRoom'
+import TinderCard2 from './components/myCard';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -78,6 +79,10 @@ function App() {
               {/* <Route
               path='/seeMatch'
               element ={<TinderCards/>}/> */}
+              <Route 
+              path = '/myCard'
+              element = {<TinderCard2/>}/>
+              
             </Routes>
           </div>
           <Footer />
