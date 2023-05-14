@@ -12,7 +12,7 @@ import Auth from '../../utils/auth';
 // import TinderCard from 'react-tinder-card';
 import App from '../../App';
 import Home from '../../pages/Home';
-// import TinderCards from '../TinderCards';
+import TinderCards from '../TinderCards';
 
 const InstrumentForm = ({ profileId }) => {
 
