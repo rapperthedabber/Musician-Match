@@ -9,7 +9,7 @@ import { ADD_ABOUT } from '../../utils/mutations';
 import { useNavigate } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
-import TinderCard from 'react-tinder-card';
+// import TinderCard from 'react-tinder-card';
 import App from '../../App';
 import Home from '../../pages/Home';
 // import TinderCards from '../TinderCards';
