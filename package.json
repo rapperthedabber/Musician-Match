@@ -7,7 +7,7 @@
   },
   "main": "server/server.js",
   "scripts": {
-    "start": "craco start && postcss src/css/app.css -o public/app.css",
+    "start": "node server/server.js --ignore client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
