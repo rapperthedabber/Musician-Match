@@ -52,15 +52,19 @@ export default function TinderCards() {
       console.log('Match worked')
       alert("You Matched!")
 
-      return match({
+      match({
         variables: { profileId: Auth.getProfile().data._id, matchedProfileId: myIdentifier }
+      })
+      // reverse match
+      match({
+        variables: { profileId: myIdentifier, matchedProfileId: Auth.getProfile().data._id }
       })
 
     }
-  return likeProfile({
-    variables: { profileId: Auth.getProfile().data._id, likedProfileId: myIdentifier }
-  })
-}
+    return likeProfile({
+      variables: { profileId: Auth.getProfile().data._id, likedProfileId: myIdentifier }
+    })
+  }
 
   const onCardLeftScreen = (myIdentifier, theirLikes) => {
     console.log(myIdentifier + ' left the screen')
