@@ -44,6 +44,7 @@ const ChatRoom = () => {
               },
             });
             //window.location.reload(true);
+            document.getElementById('newMessage').value = '';
             const original = msg.length != 0 ? msg : messages;
             setmsgState([
                 ...original,
