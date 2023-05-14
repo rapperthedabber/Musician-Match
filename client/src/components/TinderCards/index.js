@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
 import TinderCard from 'react-tinder-card'
-import { encode, decode } from 'https://cdn.jsdelivr.net/npm/js-base64@3.7.5/base64.mjs'
+// import { encode, decode } from 'https://cdn.jsdelivr.net/npm/js-base64@3.7.5/base64.mjs'
 
 import placeholder from '../../assets/placeholder.png'
 import Auth from '../../utils/auth'
