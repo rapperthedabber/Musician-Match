@@ -65,5 +65,6 @@ Githubs:
     Eli: https://github.com/eschase4
     Jerry: https://github.com/rapperthedabber
     My:
-    Mike:
+    Mike: https://github.com/mikestem
+    
 My email address is eschase4@gmail.com, feel free to reach out for any questions you may have.
