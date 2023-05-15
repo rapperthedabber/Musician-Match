@@ -9,7 +9,7 @@ import Auth from '../../utils/auth'
 
 import { QUERY_PROFILES, QUERY_ME } from '../../utils/queries'
 
-import { ADD_LIKE, ADD_MATCH } from '../../utils/mutations';
+import { ADD_LIKE, ADD_MATCH, ADD_SWIPE, CREATE_CHAT_ROOM } from '../../utils/mutations';
 
 
 
@@ -20,47 +20,52 @@ export default function TinderCards() {
   console.log(people)
   const [likeProfile] = useMutation(ADD_LIKE)
   const [match] = useMutation(ADD_MATCH)
-
-
-
-
+  const [addSwipe] = useMutation(ADD_SWIPE)
+  const [createChatRoom] = useMutation(CREATE_CHAT_ROOM)
+console.log(data2?.me.swipedProfiles)
+  const swipedProfiles = data2?.me.swipedProfiles
+  console.log(swipedProfiles)
   // const onSwipe = (direction) => {
-  //     console.log(direction)
-  //     if (direction === 'right') {
-  //       console.log('hey', direction)
-  //       const { data } = likeProfile({
-  //         variables: { profileId: Auth.getProfile().data._id, likedProfileId: TinderCard.value }
-  //       })
-  //     }
-  //     if (direction === 'left') {
-  //       console.log('goodbye', direction)
-  //     }
-  //   }
-  const onSwipe = (direction) => {
-    console.log('You swiped: ' + direction)
-    return direction
-  }
+  //   console.log('You swiped: ' + direction)
+  //   return direction
+  // }
 
-  const onSwipeLeft = () => {
-    console.log('left')
+  const onSwipeLeft = (myIdentifier) => {
+    console.log(myIdentifier)
+    addSwipe({
+      variables: { profileId: Auth.getProfile().data._id, swipedProfileId: myIdentifier }
+    })
   }
 
   const onSwipeRight = (myIdentifier, theirLikes) => {
     console.log('right')
-    console.log(myIdentifier, theirLikes)
     if (theirLikes.includes(Auth.getProfile().data._id)) {
       console.log('Match worked')
-      alert("You Matched!")
+      // alert("You Matched!")
 
-      return match({
+      match({
         variables: { profileId: Auth.getProfile().data._id, matchedProfileId: myIdentifier }
       })
+      // reverse match
+      match({
+        variables: { profileId: myIdentifier, matchedProfileId: Auth.getProfile().data._id }
+      })
 
+      createChatRoom({
+        variables: {initiatorId: Auth.getProfile().data._id, receiverId: myIdentifier, lastMessage: "Time to start jamming"}
+      })
+
+    } else {
+
+      likeProfile({
+        variables: { profileId: Auth.getProfile().data._id, likedProfileId: myIdentifier }
+      })
     }
-  return likeProfile({
-    variables: { profileId: Auth.getProfile().data._id, likedProfileId: myIdentifier }
-  })
-}
+
+    addSwipe({
+      variables: { profileId: Auth.getProfile().data._id, swipedProfileId: myIdentifier }
+    })
+  }
 
   const onCardLeftScreen = (myIdentifier, theirLikes) => {
     console.log(myIdentifier + ' left the screen')
@@ -72,12 +77,12 @@ export default function TinderCards() {
       <h1>Music Cards</h1>
       <div className='tinderContainer'>
         {people.map((person) => (
-
+  
           <TinderCard
             className='swipe'
             key={person._id}
             value={person._id}
-            onSwipe={(direction) => direction === 'left' ? onSwipeLeft() : onSwipeRight(person._id, person.likedProfiles)}
+            onSwipe={(direction) => direction === 'left' ? onSwipeLeft(person._id) : onSwipeRight(person._id, person.likedProfiles)}
             onCardLeftScreen={() => onCardLeftScreen(person._id, person.likedProfiles)}
             preventSwipe={['up', 'down']}
 
@@ -90,7 +95,7 @@ export default function TinderCards() {
               <h5 id="tinderBio">{person.bio}</h5>
             </div>
           </TinderCard>
-
+         
         ))}
       </div>
     </div>

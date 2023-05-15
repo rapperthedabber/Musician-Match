@@ -8,36 +8,49 @@ const profileSchema = new Schema({
     unique: true,
     trim: true,
   },
+
   email: {
     type: String,
     required: true,
     unique: true,
     match: [/.+@.+\..+/, 'Must match an email address!'],
   },
+
   password: {
     type: String,
     required: true,
     minlength: 5,
   },
+
   instrument:[{
       type: String,
   }],
+
   age: {
     type: Number,
   },
+
   url: {
     type: String,
     trim: true,
   },
+
   likedProfiles: [{
     type: String,
   }],
+
   bio: {
     type: String,
   },
+
   matches: [{
     type: String,
+  }],
+
+  swipedProfiles: [{
+    type: String,
   }]
+
 });
 
 // set up pre-save middleware to create password

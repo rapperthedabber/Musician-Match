@@ -1,6 +1,9 @@
 {
   "name": "musician-match",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
   "description": "",
   "engines": {
     "node": "18.x"
@@ -18,7 +21,8 @@
     "@craco/craco": "^7.1.0",
     "@react-spring/native": "^9.5.5",
     "@react-spring/web": "^9.7.2",
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "craco": "^0.0.3"
   },
   "author": "",
   "license": "ISC",
