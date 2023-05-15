@@ -1,7 +1,9 @@
 # Musician Match
     
         ![Screenshot 2023-05-15 173915](https://github.com/rapperthedabber/Musician-Match/assets/116526260/938bcf69-829b-4368-ac90-ee912173c2b1)
+        
         ![Screenshot 2023-05-15 174130](https://github.com/rapperthedabber/Musician-Match/assets/116526260/5f9785d2-a004-45bf-a3ce-83fab2704868)
+        
 ![Screenshot 2023-05-15 174217](https://github.com/rapperthedabber/Musician-Match/assets/116526260/828fea6e-402e-473d-b784-d4cb85e89ee7)
 
 
