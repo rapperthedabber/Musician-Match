@@ -63,7 +63,7 @@ This application was made under the !!!ERASE THIS SECTION!!! license.
 
 Githubs:
     Eli: https://github.com/eschase4
-    Jerry:
+    Jerry:https://github.com/rapperthedabber
     My:
     Mike:
 My email address is eschase4@gmail.com, feel free to reach out for any questions you may have.
