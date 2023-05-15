@@ -20,11 +20,11 @@ export default function TinderCards() {
   console.log(people)
   const [likeProfile] = useMutation(ADD_LIKE)
   const [match] = useMutation(ADD_MATCH)
-  const [addSwipe] = useMutation(ADD_SWIPE)
+  // const [addSwipe] = useMutation(ADD_SWIPE)
   const [createChatRoom] = useMutation(CREATE_CHAT_ROOM)
-console.log(data2?.me.swipedProfiles)
-  const swipedProfiles = data2?.me.swipedProfiles
-  console.log(swipedProfiles)
+// console.log(data2?.me.swipedProfiles)
+  // const swipedProfiles = data2?.me.swipedProfiles
+  // console.log(swipedProfiles)
   // const onSwipe = (direction) => {
   //   console.log('You swiped: ' + direction)
   //   return direction
@@ -32,9 +32,9 @@ console.log(data2?.me.swipedProfiles)
 
   const onSwipeLeft = (myIdentifier) => {
     console.log(myIdentifier)
-    addSwipe({
-      variables: { profileId: Auth.getProfile().data._id, swipedProfileId: myIdentifier }
-    })
+    // addSwipe({
+    //   variables: { profileId: Auth.getProfile().data._id, swipedProfileId: myIdentifier }
+    // })
   }
 
   const onSwipeRight = (myIdentifier, theirLikes) => {
@@ -62,10 +62,10 @@ console.log(data2?.me.swipedProfiles)
       })
     }
 
-    addSwipe({
-      variables: { profileId: Auth.getProfile().data._id, swipedProfileId: myIdentifier }
-    })
-  }
+  //   addSwipe({
+  //     variables: { profileId: Auth.getProfile().data._id, swipedProfileId: myIdentifier }
+  //   })
+   }
 
   const onCardLeftScreen = (myIdentifier, theirLikes) => {
     console.log(myIdentifier + ' left the screen')
