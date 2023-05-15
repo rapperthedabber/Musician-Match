@@ -57,13 +57,13 @@ Eli Chase, Jerry Dong, My Tang, and  Mike Stem.
 <a name="license"></a>
 ## License
 
-This application was made under the !!!ERASE THIS SECTION!!! license.
+This application was made under the MIT license.
 
 ## Questions
 
 Githubs:
     Eli: https://github.com/eschase4
     Jerry: https://github.com/rapperthedabber
-    My:
+    My: https://github.com/mtanng9
     Mike:
 My email address is eschase4@gmail.com, feel free to reach out for any questions you may have.
