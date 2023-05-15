@@ -5,10 +5,10 @@
  If the users match on right swipes, new chat rooms pop on the chat page.
 ![Screenshot 2023-05-15 174217](https://github.com/rapperthedabber/Musician-Match/assets/116526260/828fea6e-402e-473d-b784-d4cb85e89ee7)
 Users can click into chat rooms that corresponds to user profiles that they have matched with and begin chatting.
-<a name="description"></a>
-## Description  
 
-  ![Screenshot 2023-05-15 173915](https://github.com/rapperthedabber/Musician-Match/assets/116526260/938bcf69-829b-4368-ac90-ee912173c2b1)
+## Description  
+<a name="description"></a>
+
         
     
 We were motivated to make this project by the lack of a good app for musicians to meet eachother..<br>
