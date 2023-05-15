@@ -36,6 +36,14 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const ADD_SWIPE = gql`
+mutation addSwipe($profileId: ID!, $swipedProfileId: ID!) {
+  addSwipe(profileId: $profileId, swipedProfileId: $swipedProfileId) {
+    _id
+  }
+}
+`;
+
 export const ADD_LIKE = gql`
 mutation likeProfile($profileId: ID!, $likedProfileId: ID!) {
   likeProfile(profileId: $profileId, likedProfileId: $likedProfileId) {
@@ -86,7 +94,7 @@ export const UPDATE_CHAT_ROOM = gql`
 
 export const CREATE_CHAT_ROOM = gql`
   mutation createChatRoom($initiatorId: ID!, $receiverId: ID!, $lastMessage: String!) {
-    createChatRoom(initiatorId: $initiatorId, receiverId: $receiverId,,lastMessage: $lastMessage) {
+    createChatRoom(initiatorId: $initiatorId, receiverId: $receiverId, lastMessage: $lastMessage) {
       _id
       initiatorId
       receiverId

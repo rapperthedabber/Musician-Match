@@ -33,6 +33,7 @@ export const QUERY_ME = gql`
       instrument
       url
       bio
+      swipedProfiles
     }
   }
 `;

@@ -35,10 +35,10 @@ const resolvers = {
       return ChatRoom.findOne({ _id: chatRoomId });
     },
     chatRoomsByProfileId: async (parent, { profileId }) => {
-      const chatRooms = await ChatRoom.find({ 
+      const chatRooms = await ChatRoom.find({
         $or: [
-            { initiatorId: profileId },
-            { receiverId:  profileId }
+          { initiatorId: profileId },
+          { receiverId: profileId }
         ]
       }).sort([['updatedAt', -1]]);
 
@@ -81,13 +81,24 @@ const resolvers = {
           new: true,
           runValidators: true,
         }
-        )
-      },
-      
-      match: async (parent, { profileId, matchedProfileId }, context) => {
-        return Profile.findOneAndUpdate(
+      )
+    },
+    
+    addSwipe: async (parent, { profileId, swipedProfileId }, context) => {
+      return Profile.findOneAndUpdate(
         { _id: profileId },
-        { $addToSet: {matches: matchedProfileId} },
+        { $addToSet: { swipedProfiles: swipedProfileId }},
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
+    },
+
+    match: async (parent, { profileId, matchedProfileId }, context) => {
+      return Profile.findOneAndUpdate(
+        { _id: profileId },
+        { $addToSet: { matches: matchedProfileId } },
         {
           new: true,
           runValidators: true,
@@ -123,22 +134,11 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    // Make it so a logged in user can only remove a skill from their own profile
-    removeSkill: async (parent, { skill }, context) => {
+    createChatMessage: async (parent, { chatRoomId, senderId, message }, context) => {
       if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { skills: skill } },
-          { new: true }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    createChatMessage: async (parent, {chatRoomId, senderId, message}, context) => {
-     if (context.user) {
         let existingChatRoom = await ChatRoom.findOne({ _id: chatRoomId });
         if (!existingChatRoom) {
-            throw new UserInputError('The Chat Room does not exist');
+          throw new UserInputError('The Chat Room does not exist');
         }
         // Going to assume all chat rooms are two people only
         if (existingChatRoom.initiatorId != senderId && existingChatRoom.receiverId != senderId) {
@@ -150,22 +150,23 @@ const resolvers = {
           throw new UserInputError('The sender User Id does not exist');
         }
 
-        let chatMessage = await ChatMessage.create({chatRoomId, senderId, message});
+        let chatMessage = await ChatMessage.create({ chatRoomId, senderId, message });
         return chatMessage;
-      
+
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
     deleteChatMessage: async (parent, { chatMessageId }, context) => {
       if (context.user) {
-        let chatMessage =  await ChatMessage.findOne({ _id: chatMessageId });
+        let chatMessage = await ChatMessage.findOne({ _id: chatMessageId });
         if (chatMessage.senderId != context.user._id) {
           throw new AuthenticationError('You are attempting to  delete a message that is not yours!');
         }
 
         let removedMessage = await ChatMessage.findOneAndRemove({ _id: chatMessageId });
         if (!removedMessage) {
-            throw new UserInputError('No Chat Message with this Id exists');
+          throw new UserInputError('No Chat Message with this Id exists');
         }
 
         return removedMessage;
@@ -189,31 +190,36 @@ const resolvers = {
         }
 
         let existingChatRoom = await ChatRoom.findOne({
-            $or: [
-                {$and: [
-                    { initiatorId: initiatorId },
-                    { receiverId:  receiverId }
-                ]},
-                {$and: [
-                    { initiatorId: receiverId },
-                    { receiverId:  initiatorId }
-                ]}
-            ]
+          $or: [
+            {
+              $and: [
+                { initiatorId: initiatorId },
+                { receiverId: receiverId }
+              ]
+            },
+            {
+              $and: [
+                { initiatorId: receiverId },
+                { receiverId: initiatorId }
+              ]
+            }
+          ]
         })
         if (existingChatRoom) {
           throw new UserInputError('This Chat Room already exists');
         }
 
-        let chatRoom = await ChatRoom.create({initiatorId, receiverId, lastMessage});
+        let chatRoom = await ChatRoom.create({ initiatorId, receiverId, lastMessage });
         return chatRoom;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
     updateChatRoom: async (parent, { chatRoomId, lastMessage }, context) => {
       if (context.user) {
         let chatRoom = await ChatRoom.findOneAndUpdate(
           { _id: chatRoomId },
-          { $set: {lastMessage: lastMessage} },
+          { $set: { lastMessage: lastMessage } },
           { runValidators: true, new: true }
         );
 
