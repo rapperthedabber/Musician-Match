@@ -12,6 +12,7 @@ const typeDefs = gql`
     likedProfiles: [ID]
     bio: String
     matches: [ID]
+    swipedProfiles: [String]
   }
 
   type Auth {
@@ -54,12 +55,9 @@ const typeDefs = gql`
     addAbout(profileId: ID!, instrument: String!, age: Int!, url: String!, bio: String!): Profile
     likeProfile(profileId: ID!, likedProfileId: ID!): Profile
     match(profileId: ID!, matchedProfileId: ID!): Profile
+    addSwipe(profileId: ID!, swipedProfileId: ID!): Profile
 
-
-    addSkill(profileId: ID!, skill: String!): Profile
     removeProfile: Profile
-    removeSkill(skill: String!): Profile
-
 
     createChatMessage(chatRoomId: ID!, senderId: ID!, message: String!): ChatMessage
     deleteChatMessage(chatMessageId: ID!): ChatMessage
